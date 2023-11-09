@@ -31,4 +31,11 @@ public class Calendar {
         }
         return "nothing";
     }
+
+    public int calculateChristmasDDay() {
+        if (date <= 25) {
+            return (25 - date);
+        }
+        return -1;
+    }
 }
