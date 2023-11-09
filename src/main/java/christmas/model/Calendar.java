@@ -1,6 +1,5 @@
 package christmas.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Calendar {
@@ -15,8 +14,8 @@ public class Calendar {
     }
 
     private void initialize() {
-        weekend = List.of(1,2,8,9,15,16,22,23,29,30);
-        specialDay = List.of(3,10,17,24,25,31);
+        weekend = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
+        specialDay = List.of(3, 10, 17, 24, 25, 31);
     }
 
     public String judgeIsWeekdayOrWeekend() {
