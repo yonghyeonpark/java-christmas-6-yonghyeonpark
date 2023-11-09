@@ -1,8 +1,11 @@
 package christmas.util;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,5 +18,16 @@ public class ConvertTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Convert.StringToInteger(input))
                 .withMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("")
+    @Test
+    void StringToList() {
+        String input = "타파스-1,제로콜라-1";
+        List<String> list = Convert.StringToList(input);
+
+        assertThat(list.size()).isEqualTo(2);
+        assertThat(list.get(0)).isEqualTo("타파스-1");
+        assertThat(list.get(1)).isEqualTo("제로콜라-1");
     }
 }
