@@ -24,4 +24,11 @@ public class Calendar {
         }
         return "weekday";
     }
+
+    public String judgeIsSpecialDay() {
+        if (specialDay.contains(date)) {
+            return "specialDay";
+        }
+        return "nothing";
+    }
 }
