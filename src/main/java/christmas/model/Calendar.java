@@ -19,7 +19,7 @@ public class Calendar {
         specialDay = List.of(3,10,17,24,25,31);
     }
 
-    public String judgeIsWeekdayOrWeekend(int date) {
+    public String judgeIsWeekdayOrWeekend() {
         if (weekend.contains(date)) {
             return "weekend";
         }
