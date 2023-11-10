@@ -1,4 +1,4 @@
-package christmas.model.menutype;
+package christmas.model.menu;
 
 public enum Main {
 

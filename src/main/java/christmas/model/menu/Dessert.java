@@ -1,15 +1,14 @@
-package christmas.model.menutype;
+package christmas.model.menu;
 
-public enum Beverage {
+public enum Dessert {
 
-    ZERO_COLA("제로콜라", 3_000),
-    RED_WINE("레드와인", 60_000),
-    CHAMPAGNE("샴페인", 25_000);
+    CHOCO_CAKE("초코케이크", 15_000),
+    ICE_CREAM("아이스크림", 5_000);
 
     private String name;
     private int price;
 
-    Beverage(String name, int price) {
+    Dessert(String name, int price) {
         this.name = name;
         this.price = price;
     }
