@@ -1,0 +1,16 @@
+package christmas.model.menutype;
+
+public enum Appetizer {
+
+    MUSHROOM_SOUP("양송이수프", 6_000),
+    TAPAS("타파스", 5_500),
+    CAESAR_SALAD("시저샐러드", 8_000);
+
+    private String name;
+    private int price;
+
+    Appetizer(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+}
