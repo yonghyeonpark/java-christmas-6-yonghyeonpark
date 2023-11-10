@@ -3,7 +3,6 @@ package christmas.view;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.util.Convert;
 import java.util.List;
-import java.util.Map;
 
 public class InputView {
 
@@ -16,10 +15,9 @@ public class InputView {
         return Convert.stringToInteger(input);
     }
 
-    public Map<String, Integer> readOrder() {
+    public List<String> readOrder() {
         System.out.println(ORDER_INPUT_MESSAGE);
         String input = Console.readLine();
-        List<String> orders = Convert.stringToList(input);
-        return Convert.listToMapWithSplit(orders);
+        return Convert.stringToList(input);
     }
 }
