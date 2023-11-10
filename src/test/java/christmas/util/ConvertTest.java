@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,5 +30,14 @@ public class ConvertTest {
         assertThat(list.size()).isEqualTo(2);
         assertThat(list.get(0)).isEqualTo("타파스-1");
         assertThat(list.get(1)).isEqualTo("제로콜라-1");
+    }
+
+    @DisplayName("주문리스트를 각각 메뉴와 수량으로 분리하여 Map에 저장한다.")
+    @Test
+    void listToMapWithSplit() {
+        Map<String, Integer> orders = Convert.listToMapWithSplit(List.of("시저샐러드-1", "티본스테이크-2"));
+
+        assertThat(orders.get("시저샐러드")).isEqualTo(1);
+        assertThat(orders.get("티본스테이크")).isEqualTo(2);
     }
 }
