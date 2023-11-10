@@ -17,15 +17,15 @@ public class ConvertTest {
     @ValueSource(strings = {"", "a"})
     void should_ThrowIllegalArgumentException_When_InputBlankOrNonInteger(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Convert.StringToInteger(input))
+                .isThrownBy(() -> Convert.stringToInteger(input))
                 .withMessageContaining("[ERROR]");
     }
 
-    @DisplayName("")
+    @DisplayName("문자열을 쉼표 기준으로 분리하여 리스트에 저장한다.")
     @Test
-    void StringToList() {
+    void stringToList() {
         String input = "타파스-1,제로콜라-1";
-        List<String> list = Convert.StringToList(input);
+        List<String> list = Convert.stringToList(input);
 
         assertThat(list.size()).isEqualTo(2);
         assertThat(list.get(0)).isEqualTo("타파스-1");
