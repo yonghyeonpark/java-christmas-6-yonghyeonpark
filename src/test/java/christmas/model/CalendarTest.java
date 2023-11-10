@@ -1,11 +1,13 @@
 package christmas.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CalendarTest {
 
@@ -25,5 +27,14 @@ public class CalendarTest {
         Calendar calendar = new Calendar(date);
 
         assertThat(calendar.judgeIsSpecialDay()).isEqualTo("specialDay");
+    }
+
+    @DisplayName("입력 날짜가 1 미만이거나 31 초과면 예외가 발생한다.")
+    @ParameterizedTest(name = "[테스트 케이스 {index}] 입력 날짜 : {arguments}")
+    @ValueSource(ints = {0, 32})
+    void should_ThrowException_When_UnderOneOrAboveThirtyOne(int inputDate) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Calendar(inputDate))
+                .withMessageContaining("[ERROR]");
     }
 }
