@@ -64,4 +64,12 @@ public class MenuType {
     public boolean isOrderOnlyBeverage() {
         return (menuType.get("애피타이저") == 0) && (menuType.get("메인") == 0) && (menuType.get("디저트") == 0);
     }
+
+    public int getMenuTypeTotalCount() {
+        int menuTypeTotalCount = 0;
+        for (Map.Entry<String, Integer> entry : menuType.entrySet()) {
+            menuTypeTotalCount += entry.getValue();
+        }
+        return menuTypeTotalCount;
+    }
 }
