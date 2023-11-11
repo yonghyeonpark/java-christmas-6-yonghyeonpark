@@ -39,4 +39,12 @@ public class OrderTest {
                 .isThrownBy(() -> new Order(List.of("제로콜라-1", "레드와인-3")))
                 .withMessageContaining("[ERROR]");
     }
+
+    @DisplayName("메뉴판에 없는 메뉴가 있으면 예외가 발생한다.")
+    @Test
+    void should_ThrowException_When_NotOnMenu() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Order(List.of("티본스테이크-2", "원할머니보쌈-3")))
+                .withMessageContaining("[ERROR]");
+    }
 }
