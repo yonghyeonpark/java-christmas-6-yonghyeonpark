@@ -1,6 +1,7 @@
 package christmas.model;
 
 import christmas.util.Convert;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class Order {
         validateDuplicate(orders, mappedOrders);
         validateTotalMenuCountRange(mappedOrders);
         validateMenuCountRange(mappedOrders);
-        MenuType menuType = new MenuType(mappedOrders);
+        MenuType menuType = new MenuType(new HashMap<>());
         validateMenuType(mappedOrders, menuType);
         this.orders = mappedOrders;
     }
