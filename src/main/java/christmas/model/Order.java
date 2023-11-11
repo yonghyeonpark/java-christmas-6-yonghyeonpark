@@ -14,6 +14,7 @@ public class Order {
         Map<String, Integer> mappedOrders = Convert.listToMapWithSplit(orders);
         validateDuplicate(orders, mappedOrders);
         validateRange(mappedOrders);
+        validateMenuCountRange(mappedOrders);
         this.orders = mappedOrders;
     }
 
@@ -29,6 +30,18 @@ public class Order {
             orderCount += entry.getValue();
         }
         if (orderCount > 20) {
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateMenuCountRange(Map<String, Integer> orders) {
+        for (int orderCount : orders.values()) {
+            checkMenuCountRange(orderCount);
+        }
+    }
+
+    private void checkMenuCountRange(int orderCount) {
+        if (orderCount < 1) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
