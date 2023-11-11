@@ -15,6 +15,8 @@ public class Order {
         validateDuplicate(orders, mappedOrders);
         validateTotalMenuCountRange(mappedOrders);
         validateMenuCountRange(mappedOrders);
+        MenuType menuType = new MenuType(mappedOrders);
+        validateMenuType(mappedOrders, menuType);
         this.orders = mappedOrders;
     }
 
@@ -42,6 +44,13 @@ public class Order {
 
     private void checkMenuCountRange(int orderCount) {
         if (orderCount < 1) {
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateMenuType(Map<String, Integer> orders, MenuType menuType) {
+        menuType.countMenuType(orders);
+        if (menuType.isOrderOnlyBeverage()) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
