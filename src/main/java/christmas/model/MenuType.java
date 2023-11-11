@@ -60,4 +60,8 @@ public class MenuType {
             }
         }
     }
+
+    public boolean isOrderOnlyBeverage() {
+        return (menuType.get("애피타이저") == 0) && (menuType.get("메인") == 0) && (menuType.get("디저트") == 0);
+    }
 }
