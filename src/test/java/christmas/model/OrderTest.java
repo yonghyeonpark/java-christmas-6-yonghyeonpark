@@ -23,4 +23,12 @@ public class OrderTest {
                 .isThrownBy(() -> new Order(List.of("티본스테이크-18", "초코케이크-3")))
                 .withMessageContaining("[ERROR]");
     }
+
+    @DisplayName("주문 메뉴의 개별 개수가 1 미만이면 예외가 발생한다.")
+    @Test
+    void should_ThrowException_When_MenuCountUnderOne() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Order(List.of("티본스테이크-0")))
+                .withMessageContaining("[ERROR]");
+    }
 }
