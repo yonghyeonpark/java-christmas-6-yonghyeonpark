@@ -29,11 +29,7 @@ public class Order {
     }
 
     private void validateTotalMenuCountRange(Map<String, Integer> orders) {
-        int orderCount = 0;
-        for (Map.Entry<String, Integer> entry : orders.entrySet()) {
-            orderCount += entry.getValue();
-        }
-        if (orderCount > 20) {
+        if (getOrderCount(orders) > 20) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
@@ -58,12 +54,16 @@ public class Order {
     }
 
     private void validateMenu(Map<String, Integer> orders, MenuType menuType) {
+        if (getOrderCount(orders) != menuType.getMenuTypeTotalCount()) {
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    private int getOrderCount(Map<String, Integer> orders) {
         int orderCount = 0;
         for (Map.Entry<String, Integer> entry : orders.entrySet()) {
             orderCount += entry.getValue();
         }
-        if (orderCount != menuType.getMenuTypeTotalCount()) {
-            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
-        }
+        return orderCount;
     }
 }
