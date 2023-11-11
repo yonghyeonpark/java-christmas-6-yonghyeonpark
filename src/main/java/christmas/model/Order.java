@@ -18,6 +18,7 @@ public class Order {
         validateMenuCountRange(mappedOrders);
         MenuType menuType = new MenuType(new HashMap<>());
         validateMenuType(mappedOrders, menuType);
+        validateMenu(mappedOrders, menuType);
         this.orders = mappedOrders;
     }
 
@@ -52,6 +53,16 @@ public class Order {
     private void validateMenuType(Map<String, Integer> orders, MenuType menuType) {
         menuType.countMenuType(orders);
         if (menuType.isOrderOnlyBeverage()) {
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateMenu(Map<String, Integer> orders, MenuType menuType) {
+        int orderCount = 0;
+        for (Map.Entry<String, Integer> entry : orders.entrySet()) {
+            orderCount += entry.getValue();
+        }
+        if (orderCount != menuType.getMenuTypeTotalCount()) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
