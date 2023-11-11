@@ -13,7 +13,7 @@ public class Order {
     public Order(List<String> orders) {
         Map<String, Integer> mappedOrders = Convert.listToMapWithSplit(orders);
         validateDuplicate(orders, mappedOrders);
-        validateRange(mappedOrders);
+        validateTotalMenuCountRange(mappedOrders);
         validateMenuCountRange(mappedOrders);
         this.orders = mappedOrders;
     }
@@ -24,7 +24,7 @@ public class Order {
         }
     }
 
-    private void validateRange(Map<String, Integer> orders) {
+    private void validateTotalMenuCountRange(Map<String, Integer> orders) {
         int orderCount = 0;
         for (Map.Entry<String, Integer> entry : orders.entrySet()) {
             orderCount += entry.getValue();
