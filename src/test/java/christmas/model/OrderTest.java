@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 public class OrderTest {
@@ -46,5 +47,58 @@ public class OrderTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Order(List.of("티본스테이크-2", "원할머니보쌈-3")))
                 .withMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("주문이 잘못된 형식으로 입력되면 예외가 발생한다.")
+    @Nested
+    class FormatError {
+
+        @DisplayName("예시 : (-티본스테이크-2,아이스크림-4)")
+        @Test
+        void ex1_should_ThrowException_When_FormatError() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Order(List.of("-티본스테이크-2", "아이스크림-4")))
+                    .withMessageContaining("[ERROR]");
+        }
+
+        @DisplayName("예시 : (티본스테이크-2-,아이스크림-4)")
+        @Test
+        void ex2_should_ThrowException_When_FormatError() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Order(List.of("티본스테이크-2-", "아이스크림-4")))
+                    .withMessageContaining("[ERROR]");
+        }
+
+        @DisplayName("예시 : (티본스테이크-2-3,아이스크림-4)")
+        @Test
+        void ex3_should_ThrowException_When_FormatError() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Order(List.of("티본스테이크-2-3", "아이스크림-4")))
+                    .withMessageContaining("[ERROR]");
+        }
+
+        @DisplayName("예시 : (티본스테이크-2- ,아이스크림-4)")
+        @Test
+        void ex4_should_ThrowException_When_FormatError() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Order(List.of("티본스테이크-2- ", "아이스크림-4")))
+                    .withMessageContaining("[ERROR]");
+        }
+
+        @DisplayName("예시 : (티본스테이크-2,4)")
+        @Test
+        void ex5_should_ThrowException_When_FormatError() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Order(List.of("티본스테이크-2", "4")))
+                    .withMessageContaining("[ERROR]");
+        }
+
+        @DisplayName("예시 : (티본스테이크-2,아이스크림)")
+        @Test
+        void ex6_should_ThrowException_When_FormatError() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Order(List.of("티본스테이크-2", "아이스크림")))
+                    .withMessageContaining("[ERROR]");
+        }
     }
 }
