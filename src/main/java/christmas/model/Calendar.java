@@ -1,18 +1,20 @@
 package christmas.model;
 
+import christmas.util.Convert;
 import java.util.List;
 
 public class Calendar {
 
-    private static final String DATE_INPUT_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    private static final String DATE_INPUT_ERROR_MESSAGE = ErrorMessage.DATE.getContent();
 
     private final int date;
     private List<Integer> weekend;
     private List<Integer> specialDay;
 
-    public Calendar(int date) {
-        this.date = date;
+    public Calendar(String inputDate) {
+        int date = Convert.stringToInteger(inputDate, DATE_INPUT_ERROR_MESSAGE);
         validateRange(date);
+        this.date = date;
         initialize();
     }
 
