@@ -8,13 +8,11 @@ import java.util.stream.Collectors;
 
 public class Convert {
 
-    private static final String NON_INTEGER_INPUT_ERROR_MESSAGE = "[ERROR] 공백이나 숫자가 아닌 입력은 허용하지 않습니다. 다시 입력해 주세요.";
-
-    public static int stringToInteger(String input) {
+    public static int stringToInteger(String input, String errorMessage) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_INTEGER_INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
@@ -23,12 +21,12 @@ public class Convert {
                 .collect(Collectors.toList());
     }
 
-    public static Map<String, Integer> listToMapWithSplit(List<String> nonSplitOrders) {
+    public static Map<String, Integer> listToMapWithSplit(List<String> nonSplitOrders, String errorMessage) {
         Map<String, Integer> orders = new HashMap<>();
         for (String nonSplitOrder : nonSplitOrders) {
             List<String> splitOrder = Arrays.stream(nonSplitOrder.split("-"))
                     .toList();
-            orders.put(splitOrder.get(0), Convert.stringToInteger(splitOrder.get(1)));
+            orders.put(splitOrder.get(0), Convert.stringToInteger(splitOrder.get(1), errorMessage));
         }
         return orders;
     }
