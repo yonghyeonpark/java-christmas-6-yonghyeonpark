@@ -14,8 +14,8 @@ public class CalendarTest {
     @DisplayName("날짜가 평일인지 주말인지 판단한다.")
     @ParameterizedTest(name = "[테스트 케이스 {index}] 날짜 : {0} -> {1}")
     @CsvSource({"4, weekday", "8, weekend"})
-    void judgeIsWeekdayOrWeekend(int date, String day) {
-        Calendar calendar = new Calendar(date);
+    void judgeIsWeekdayOrWeekend(String inputDate, String day) {
+        Calendar calendar = new Calendar(inputDate);
 
         assertThat(calendar.judgeIsWeekdayOrWeekend()).isEqualTo(day);
     }
@@ -23,16 +23,16 @@ public class CalendarTest {
     @DisplayName("날짜가 특별한 날인지 판단한다.")
     @Test
     void judgeIsSpecialDay() {
-        int date = 10;
-        Calendar calendar = new Calendar(date);
+        String inputDate = "10";
+        Calendar calendar = new Calendar(inputDate);
 
         assertThat(calendar.judgeIsSpecialDay()).isEqualTo("specialDay");
     }
 
     @DisplayName("입력 날짜가 1 미만이거나 31 초과면 예외가 발생한다.")
     @ParameterizedTest(name = "[테스트 케이스 {index}] 입력 날짜 : {arguments}")
-    @ValueSource(ints = {0, 32})
-    void should_ThrowException_When_UnderOneOrAboveThirtyOne(int inputDate) {
+    @ValueSource(strings = {"0", "32"})
+    void should_ThrowException_When_UnderOneOrAboveThirtyOne(String inputDate) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Calendar(inputDate))
                 .withMessageContaining("[ERROR]");
