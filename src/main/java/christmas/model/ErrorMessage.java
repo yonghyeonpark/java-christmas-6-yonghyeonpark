@@ -2,16 +2,16 @@ package christmas.model;
 
 public enum ErrorMessage {
 
-    DATE_ERROR_MESSAGE("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
-    ORDER_ERROR_MESSAGE("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    DATE("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
+    ORDER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 
-    private String errorMessage;
+    private String content;
 
-    ErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    ErrorMessage(String content) {
+        this.content = content;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getContent() {
+        return content;
     }
 }
