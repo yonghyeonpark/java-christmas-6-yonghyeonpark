@@ -17,6 +17,6 @@ public class InputView {
     public List<String> readOrder() {
         System.out.println(ORDER_INPUT_MESSAGE);
         String inputOrder = Console.readLine();
-        return Convert.stringToList(inputOrder);
+        return Convert.stringToListByComma(inputOrder);
     }
 }

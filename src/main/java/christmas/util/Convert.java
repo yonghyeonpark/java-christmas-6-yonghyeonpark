@@ -13,7 +13,7 @@ public class Convert {
         }
     }
 
-    public static List<String> stringToList(String input) {
+    public static List<String> stringToListByComma(String input) {
         return Arrays.stream(input.split(","))
                 .toList();
     }

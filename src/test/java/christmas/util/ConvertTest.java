@@ -23,7 +23,7 @@ public class ConvertTest {
     @Test
     void stringToList() {
         String input = "타파스-1,제로콜라-1";
-        List<String> list = Convert.stringToList(input);
+        List<String> list = Convert.stringToListByComma(input);
 
         assertThat(list.size()).isEqualTo(2);
         assertThat(list.get(0)).isEqualTo("타파스-1");
