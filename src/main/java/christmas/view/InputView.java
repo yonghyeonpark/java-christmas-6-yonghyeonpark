@@ -1,6 +1,8 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.util.Convert;
+import java.util.List;
 
 public class InputView {
 
@@ -12,8 +14,9 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String readOrder() {
+    public List<String> readOrder() {
         System.out.println(ORDER_INPUT_MESSAGE);
-        return Console.readLine();
+        String inputOrder = Console.readLine();
+        return Convert.stringToList(inputOrder);
     }
 }
