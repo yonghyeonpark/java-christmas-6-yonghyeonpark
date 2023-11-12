@@ -1,6 +1,7 @@
 package christmas.model;
 
 import christmas.util.Convert;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class Order {
     private final Map<String, Integer> orders;
 
     public Order(List<String> orders) {
-        Map<String, Integer> mappedOrders = Convert.listToMapWithSplit(orders);
+        Map<String, Integer> mappedOrders = convertListToMapByDash(orders);
         validateDuplicate(orders, mappedOrders);
         validateTotalMenuCountRange(mappedOrders);
         validateMenuCountRange(mappedOrders);
@@ -20,6 +21,19 @@ public class Order {
         validateMenuType(mappedOrders, menuType);
         validateMenu(mappedOrders, menuType);
         this.orders = mappedOrders;
+    }
+
+    private Map<String, Integer> convertListToMapByDash(List<String> orders) {
+        Map<String, Integer> mappedOrders = new HashMap<>();
+        for (String order : orders) {
+            List<String> splitOrder = Arrays.stream(order.split("-"))
+                    .toList();
+            mappedOrders.put(
+                    splitOrder.get(0),
+                    Convert.stringToInteger(splitOrder.get(1), ORDER_INPUT_ERROR_MESSAGE)
+            );
+        }
+        return mappedOrders;
     }
 
     private void validateDuplicate(List<String> orders, Map<String, Integer> mappedOrders) {
