@@ -43,9 +43,9 @@ public class Calendar {
         return "nothing";
     }
 
-    public int calculateChristmasDDay() {
+    public int calculateBeforeDDayDiscount() {
         if (date <= 25) {
-            return (25 - date);
+            return date - 1;
         }
         return -1;
     }
