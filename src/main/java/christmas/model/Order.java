@@ -26,14 +26,28 @@ public class Order {
     private Map<String, Integer> convertListToMapByDash(List<String> orders) {
         Map<String, Integer> mappedOrders = new HashMap<>();
         for (String order : orders) {
+            validateOrderEndChar(order);
             List<String> splitOrder = Arrays.stream(order.split("-"))
                     .toList();
+            validateSplitOrderSize(splitOrder);
             mappedOrders.put(
                     splitOrder.get(0),
                     Convert.stringToInteger(splitOrder.get(1), ORDER_INPUT_ERROR_MESSAGE)
             );
         }
         return mappedOrders;
+    }
+
+    private void validateOrderEndChar(String order) {
+        if (order.endsWith("-")) {
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateSplitOrderSize(List<String> splitOrder) {
+        if (splitOrder.size() != 2) {
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
+        }
     }
 
     private void validateDuplicate(List<String> orders, Map<String, Integer> mappedOrders) {
