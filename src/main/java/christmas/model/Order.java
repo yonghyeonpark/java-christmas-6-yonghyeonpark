@@ -155,4 +155,17 @@ public class Order {
         }
         return beverageOrderAmount;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : orders.entrySet()) {
+            stringBuilder.append(entry.getKey())
+                    .append(" ")
+                    .append(entry.getValue())
+                    .append("개")
+                    .append("\n");
+        }
+        return stringBuilder.toString();
+    }
 }
