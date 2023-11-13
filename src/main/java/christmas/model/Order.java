@@ -1,5 +1,9 @@
 package christmas.model;
 
+import christmas.model.menu.Appetizer;
+import christmas.model.menu.Beverage;
+import christmas.model.menu.Dessert;
+import christmas.model.menu.Main;
 import christmas.util.Convert;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -93,5 +97,62 @@ public class Order {
             orderCount += entry.getValue();
         }
         return orderCount;
+    }
+
+    public int calculateTotalOrderAmount() {
+        int totalOrderAmount = 0;
+        for (Map.Entry<String, Integer> entry : orders.entrySet()) {
+            totalOrderAmount += orderAmountByMenuType(entry);
+        }
+        return totalOrderAmount;
+    }
+
+    private int orderAmountByMenuType(Map.Entry<String, Integer> entry) {
+        int ordersAmount = 0;
+        ordersAmount += appetizerOrderAmount(entry);
+        ordersAmount += mainOrderAmount(entry);
+        ordersAmount += dessertOrderAmount(entry);
+        ordersAmount += beverageOrderAmount(entry);
+        return ordersAmount;
+    }
+
+    private int appetizerOrderAmount(Map.Entry<String, Integer> entry) {
+        int appetizerOrderAmount = 0;
+        for (Appetizer appetizer : Appetizer.values()) {
+            if (entry.getKey().equals(appetizer.getName())) {
+                appetizerOrderAmount += (entry.getValue()) * (appetizer.getPrice());
+            }
+        }
+        return appetizerOrderAmount;
+    }
+
+    private int mainOrderAmount(Map.Entry<String, Integer> entry) {
+        int mainOrderAmount = 0;
+        for (Main main : Main.values()) {
+            if (entry.getKey().equals(main.getName())) {
+                mainOrderAmount += (entry.getValue()) * (main.getPrice());
+            }
+        }
+        return mainOrderAmount;
+    }
+
+    private int dessertOrderAmount(Map.Entry<String, Integer> entry) {
+        int dessertOrderAmount = 0;
+        for (Dessert dessert : Dessert.values()) {
+            if (entry.getKey().equals(dessert.getName())) {
+                dessertOrderAmount += (entry.getValue()) * (dessert.getPrice());
+            }
+        }
+        return dessertOrderAmount;
+    }
+
+    private int beverageOrderAmount(Map.Entry<String, Integer> entry) {
+        int beverageOrderAmount = 0;
+        for (Beverage beverage : Beverage.values()) {
+            if (entry.getKey().equals(beverage.getName())) {
+                beverageOrderAmount += (entry.getValue()) * (beverage.getPrice());
+            }
+        }
+        return beverageOrderAmount;
     }
 }
