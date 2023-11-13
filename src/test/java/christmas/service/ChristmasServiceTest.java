@@ -42,4 +42,15 @@ public class ChristmasServiceTest {
 
         assertThat(paymentAmount).isEqualTo(20000);
     }
+
+    @DisplayName("")
+    @ParameterizedTest(name = "[테스트 케이스 {index}] 총혜택 금액 : {0}, 이벤트 뱃지 : {1}")
+    @CsvSource({"4999, 없음", "5000, 별", "9999, 별", "10000, 트리", "19999, 트리", "20000, 산타"})
+    void getEventBadge(int totalBenefitAmount, String expected) {
+        ChristmasService christmasService = new ChristmasService();
+
+        String eventBadge = christmasService.judgeEventBadge(totalBenefitAmount);
+
+        assertThat(eventBadge).isEqualTo(expected);
+    }
 }
