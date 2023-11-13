@@ -18,4 +18,15 @@ public class ChristmasServiceTest {
 
         assertThat(eventApplication).isEqualTo(expected);
     }
+
+    @DisplayName("할인 전 총주문 금액에 따라 증정 메뉴를 구한다.")
+    @ParameterizedTest(name = "[테스트 케이스 {index}] 총주문 금액 : {0}, 증정 메뉴 : {1}")
+    @CsvSource({"119999, 없음", "120000, 샴페인 1개"})
+    void getGiftMenu(int totalOrderAmount, String expected) {
+        ChristmasService christmasService = new ChristmasService();
+
+        String giftMenu = christmasService.getGiftMenu(totalOrderAmount);
+
+        assertThat(giftMenu).isEqualTo(expected);
+    }
 }
