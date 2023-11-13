@@ -68,6 +68,21 @@ public class Benefit {
         return totalBenefitAmount;
     }
 
+    public int calculateTotalDiscountAmount() {
+        int totalDiscountAmount = 0;
+        for (Map.Entry<BenefitType, Integer> entry : benefits.entrySet()) {
+            totalDiscountAmount += checkIsGiftEventType(entry);
+        }
+        return totalDiscountAmount;
+    }
+
+    private int checkIsGiftEventType(Map.Entry<BenefitType, Integer> entry) {
+        if (!entry.getKey().equals(BenefitType.GIFT_EVENT)) {
+            return entry.getValue();
+        }
+        return 0;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
