@@ -60,6 +60,14 @@ public class Benefit {
         }
     }
 
+    public int calculateTotalBenefitAmount() {
+        int totalBenefitAmount = 0;
+        for (Map.Entry<BenefitType, Integer> entry : benefits.entrySet()) {
+            totalBenefitAmount += entry.getValue();
+        }
+        return totalBenefitAmount;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
