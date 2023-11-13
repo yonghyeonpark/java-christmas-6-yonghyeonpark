@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.util.Convert;
 import java.util.Map;
 
 public class Benefit {
@@ -57,5 +58,20 @@ public class Benefit {
         if (giftMenu.equals("샴페인 1개")) {
             benefits.put(BenefitType.GIFT_EVENT, 25000);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<BenefitType, Integer> entry : benefits.entrySet()) {
+            if (entry.getValue() != 0) {
+                stringBuilder.append(entry.getKey().getName())
+                        .append(": ")
+                        .append("-")
+                        .append(Convert.formatIntegerToString(entry.getValue()))
+                        .append("원\n");
+            }
+        }
+        return stringBuilder.toString();
     }
 }
