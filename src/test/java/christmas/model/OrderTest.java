@@ -1,5 +1,6 @@
 package christmas.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
@@ -100,5 +101,14 @@ public class OrderTest {
                     .isThrownBy(() -> new Order(List.of("티본스테이크-2", "아이스크림")))
                     .withMessageContaining("[ERROR]");
         }
+    }
+
+    @DisplayName("총주문 금액을 구한다.")
+    @Test
+    void calculateTotalOrderAmount() {
+        Order order = new Order(List.of("양송이수프-2", "티본스테이크-2", "레드와인-2", "아이스크림-2"));
+        int totalOrderAmount = order.calculateTotalOrderAmount();
+
+        assertThat(totalOrderAmount).isEqualTo(252000);
     }
 }
