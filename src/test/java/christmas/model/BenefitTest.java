@@ -79,4 +79,21 @@ public class BenefitTest {
 
         assertThat(benefits.get(BenefitType.GIFT_EVENT)).isEqualTo(expected);
     }
+
+    @DisplayName("총혜택 금액을 계산한다.")
+    @Test
+    void calculateTotalBenefitAmount() {
+        Benefit benefit = new Benefit(benefits, new Date("17"));
+        Map<String, Integer> menuType = new HashMap<>();
+        menuType.put("메인", 2);
+        menuType.put("디저트", 3);
+
+        benefit.calculateDDayDiscountAmount();
+        benefit.calculateWeekDayOrWeekendDiscountAmount(menuType);
+        benefit.calculateSpecialDayDiscountAmount();
+        benefit.calculateGiftEventDiscountAmount("샴페인 1개");
+        int totalBenefitAmount = benefit.calculateTotalBenefitAmount();
+
+        assertThat(totalBenefitAmount).isEqualTo(34669);
+    }
 }
