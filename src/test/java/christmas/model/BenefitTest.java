@@ -57,4 +57,14 @@ public class BenefitTest {
         assertThat(benefits.get(BenefitType.WEEKDAY)).isEqualTo(0);
         assertThat(benefits.get(BenefitType.WEEKEND)).isEqualTo(4046);
     }
+
+    @DisplayName("특별 할인 금액을 계산한다.")
+    @Test
+    void calculateSpecialDayDiscountAmount() {
+        Benefit benefit = new Benefit(benefits, new Calendar("10"));
+
+        benefit.calculateSpecialDayDiscountAmount();
+
+        assertThat(benefits.get(BenefitType.SPECIAL)).isEqualTo(1000);
+    }
 }
