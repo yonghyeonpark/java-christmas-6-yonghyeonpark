@@ -8,6 +8,7 @@ public class Benefit {
     private static final int NOTHING = -1;
     private static final int D_DAY_DISCOUNT_BASIC_AMOUNT = 1000;
     private static final int D_DAY_DISCOUNT_INCREMENT_AMOUNT = 100;
+    private static final int WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU = 2023;
 
     private final Map<BenefitType, Integer> benefits;
     private final Calendar calendar;
@@ -36,4 +37,12 @@ public class Benefit {
         }
     }
 
+    public void calculateWeekDayOrWeekendDiscountAmount(Map<String, Integer> menuType) {
+        if (calendar.judgeIsWeekdayOrWeekend().equals("weekday")) {
+            benefits.put(BenefitType.WEEKDAY, menuType.get("디저트") * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
+        }
+        if (calendar.judgeIsWeekdayOrWeekend().equals("weekend")) {
+            benefits.put(BenefitType.WEEKEND, menuType.get("메인") * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
+        }
+    }
 }
