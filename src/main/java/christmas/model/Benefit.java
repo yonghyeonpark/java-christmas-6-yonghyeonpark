@@ -52,4 +52,10 @@ public class Benefit {
             benefits.put(BenefitType.SPECIAL, SPECIAL_DAY_DISCOUNT_AMOUNT);
         }
     }
+
+    public void calculateGiftEventDiscountAmount(String giftMenu) {
+        if (giftMenu.equals("샴페인 1개")) {
+            benefits.put(BenefitType.GIFT_EVENT, 25000);
+        }
+    }
 }
