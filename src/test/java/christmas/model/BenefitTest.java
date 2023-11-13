@@ -67,4 +67,15 @@ public class BenefitTest {
 
         assertThat(benefits.get(BenefitType.SPECIAL)).isEqualTo(1000);
     }
+
+    @DisplayName("증정 이벤트에 대한 할인 금액을 계산한다.")
+    @ParameterizedTest(name = "[테스트 케이스 {index}] 증정 메뉴 : {0}, 증정 이벤트 할인 금액 : {1}")
+    @CsvSource({"샴페인 1개, 25000", "없음, 0"})
+    void calculateGiftEventDiscountAmount1(String giftMenu, int expected) {
+        Benefit benefit = new Benefit(benefits, new Calendar("15"));
+
+        benefit.calculateGiftEventDiscountAmount(giftMenu);
+
+        assertThat(benefits.get(BenefitType.GIFT_EVENT)).isEqualTo(expected);
+    }
 }
