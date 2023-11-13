@@ -29,4 +29,13 @@ public class ConvertTest {
         assertThat(list.get(0)).isEqualTo("타파스-1");
         assertThat(list.get(1)).isEqualTo("제로콜라-1");
     }
+
+    @DisplayName("정수를 조건에 맞게 형식화하여 문자열로 변환한다.")
+    @Test
+    void formatIntegerToString() {
+        int amount = 25000000;
+        String formattedInteger = Convert.formatIntegerToString(amount);
+
+        assertThat(formattedInteger).isEqualTo("25,000,000");
+    }
 }
