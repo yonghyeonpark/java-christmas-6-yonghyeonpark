@@ -12,11 +12,11 @@ public class Benefit {
     private static final int SPECIAL_DAY_DISCOUNT_AMOUNT = 1000;
 
     private final Map<BenefitType, Integer> benefits;
-    private final Calendar calendar;
+    private final Date date;
 
-    public Benefit(Map<BenefitType, Integer> benefits, Calendar calendar) {
+    public Benefit(Map<BenefitType, Integer> benefits, Date date) {
         this.benefits = benefits;
-        this.calendar = calendar;
+        this.date = date;
         setUp();
     }
 
@@ -29,7 +29,7 @@ public class Benefit {
     }
 
     public void calculateDDayDiscountAmount() {
-        int calculation = calendar.CalculationForDDayDiscountAmount();
+        int calculation = date.CalculationForDDayDiscountAmount();
         if (calculation != NOTHING) {
             benefits.put(
                     BenefitType.CHRISTMAS_D_DAY,
@@ -39,16 +39,16 @@ public class Benefit {
     }
 
     public void calculateWeekDayOrWeekendDiscountAmount(Map<String, Integer> menuType) {
-        if (calendar.judgeIsWeekdayOrWeekend().equals("weekday")) {
+        if (date.judgeIsWeekdayOrWeekend().equals("weekday")) {
             benefits.put(BenefitType.WEEKDAY, menuType.get("디저트") * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
         }
-        if (calendar.judgeIsWeekdayOrWeekend().equals("weekend")) {
+        if (date.judgeIsWeekdayOrWeekend().equals("weekend")) {
             benefits.put(BenefitType.WEEKEND, menuType.get("메인") * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
         }
     }
 
     public void calculateSpecialDayDiscountAmount() {
-        if (calendar.judgeIsSpecialDay().equals("specialDay")) {
+        if (date.judgeIsSpecialDay().equals("specialDay")) {
             benefits.put(BenefitType.SPECIAL, SPECIAL_DAY_DISCOUNT_AMOUNT);
         }
     }

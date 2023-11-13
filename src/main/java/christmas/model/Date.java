@@ -3,7 +3,7 @@ package christmas.model;
 import christmas.util.Convert;
 import java.util.List;
 
-public class Calendar {
+public class Date {
 
     private static final int FIRST_DAY_OF_DECEMBER = 1;
     private static final int LAST_DAY_OF_DECEMBER = 31;
@@ -16,7 +16,7 @@ public class Calendar {
 
     private final int date;
 
-    public Calendar(String inputDate) {
+    public Date(String inputDate) {
         int date = Convert.stringToInteger(inputDate, DATE_INPUT_ERROR_MESSAGE);
         validateRange(date);
         this.date = date;

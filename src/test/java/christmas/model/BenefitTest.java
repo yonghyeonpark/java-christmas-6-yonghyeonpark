@@ -23,7 +23,7 @@ public class BenefitTest {
     @ParameterizedTest(name = "[테스트 케이스 {index}] 방문 날짜 : {0}일, 크리스마스 디데이 할인 금액 : {1}원")
     @CsvSource({"1, 1000", "25, 3400"})
     void calculateDDayDiscountAmount(String date, int expected) {
-        Benefit benefit = new Benefit(benefits, new Calendar(date));
+        Benefit benefit = new Benefit(benefits, new Date(date));
 
         benefit.calculateDDayDiscountAmount();
 
@@ -33,7 +33,7 @@ public class BenefitTest {
     @DisplayName("평일 할인 금액을 계산한다.")
     @Test
     void calculateWeekDayDiscountAmount() {
-        Benefit benefit = new Benefit(benefits, new Calendar("17"));
+        Benefit benefit = new Benefit(benefits, new Date("17"));
         Map<String, Integer> menuType = new HashMap<>();
         menuType.put("메인", 2);
         menuType.put("디저트", 3);
@@ -47,7 +47,7 @@ public class BenefitTest {
     @DisplayName("주말 할인 금액을 계산한다.")
     @Test
     void calculateWeekendDiscountAmount() {
-        Benefit benefit = new Benefit(benefits, new Calendar("15"));
+        Benefit benefit = new Benefit(benefits, new Date("15"));
         Map<String, Integer> menuType = new HashMap<>();
         menuType.put("메인", 2);
         menuType.put("디저트", 3);
@@ -62,7 +62,7 @@ public class BenefitTest {
     @ParameterizedTest(name = "[테스트 케이스 {index}] 방문 날짜 : {0}일, 특별 할인 금액 : {1}원")
     @CsvSource({"10, 1000", "26, 0"})
     void calculateSpecialDayDiscountAmount(String date, int expected) {
-        Benefit benefit = new Benefit(benefits, new Calendar(date));
+        Benefit benefit = new Benefit(benefits, new Date(date));
 
         benefit.calculateSpecialDayDiscountAmount();
 
@@ -73,7 +73,7 @@ public class BenefitTest {
     @ParameterizedTest(name = "[테스트 케이스 {index}] 증정 메뉴 : {0}, 증정 이벤트 할인 금액 : {1}원")
     @CsvSource({"샴페인 1개, 25000", "없음, 0"})
     void calculateGiftEventDiscountAmount1(String giftMenu, int expected) {
-        Benefit benefit = new Benefit(benefits, new Calendar("15"));
+        Benefit benefit = new Benefit(benefits, new Date("15"));
 
         benefit.calculateGiftEventDiscountAmount(giftMenu);
 
