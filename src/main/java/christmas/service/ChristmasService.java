@@ -15,4 +15,8 @@ public class ChristmasService {
         }
         return "없음";
     }
+
+    public int calculatePaymentAmount(int totalOrderAmount, int totalDiscountAmount) {
+        return totalOrderAmount - totalDiscountAmount;
+    }
 }
