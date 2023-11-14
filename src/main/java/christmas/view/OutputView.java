@@ -33,7 +33,7 @@ public class OutputView {
 
     public void printTotalOrderAmount(int totalOrderAmount) {
         System.out.println(TOTAL_ORDER_AMOUNT_MESSAGE);
-        Convert.formatIntegerToString(totalOrderAmount);
+        System.out.println(Convert.formatIntegerToString(totalOrderAmount));
         System.out.println();
     }
 
