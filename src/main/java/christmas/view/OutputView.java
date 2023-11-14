@@ -44,12 +44,23 @@ public class OutputView {
 
     public void printBenefits(String benefits) {
         System.out.println(BENEFITS_MESSAGE);
-        System.out.println(benefits);
+        if (benefits.isEmpty()) {
+            System.out.println("없음");
+            System.out.println();
+        }
+        if (!benefits.isEmpty()) {
+            System.out.println(benefits);
+        }
     }
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
         System.out.println(TOTAL_BENEFIT_AMOUNT_MESSAGE);
-        System.out.println(MINUS + Convert.formatIntegerToString(totalBenefitAmount));
+        if (totalBenefitAmount == 0) {
+            System.out.println(Convert.formatIntegerToString(totalBenefitAmount));
+        }
+        if (totalBenefitAmount != 0) {
+            System.out.println(MINUS + Convert.formatIntegerToString(totalBenefitAmount));
+        }
         System.out.println();
     }
 
