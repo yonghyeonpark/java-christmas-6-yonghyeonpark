@@ -14,13 +14,15 @@ public class MenuTest {
     void countMenuType() {
         Map<String, Integer> menuType = new HashMap<>();
         Menu menu = new Menu(menuType);
-        menu.countMenuType(Map.of(
+        Map<String, Integer> orders = Map.of(
                 "양송이수프", 1,
                 "타파스", 2,
                 "티본스테이크", 3,
                 "아이스크림", 4,
                 "레드와인", 5
-        ));
+        );
+
+        menu.countMenuType(orders);
 
         assertThat(menuType.get("애피타이저")).isEqualTo(3);
         assertThat(menuType.get("메인")).isEqualTo(3);
