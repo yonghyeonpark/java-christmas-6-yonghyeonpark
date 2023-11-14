@@ -24,6 +24,7 @@ public class DateTest {
     @Test
     void judgeIsSpecialDay() {
         String inputDate = "10";
+
         Date date = new Date(inputDate);
 
         assertThat(date.judgeIsSpecialDay()).isEqualTo("specialDay");
