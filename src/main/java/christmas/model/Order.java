@@ -13,6 +13,12 @@ import java.util.Map;
 public class Order {
 
     private static final String ORDER_INPUT_ERROR_MESSAGE = ErrorMessage.ORDER.getContent();
+    private static final int MENU_ORDER = 0;
+    private static final int MENU_ORDER_COUNT_STRING = 1;
+    private static final String DASH = "-";
+    private static final int CORRECT_SPLIT_ORDER_SIZE = 2;
+    private static final int MAX_MENU_ORDERS_COUNT = 20;
+    private static final int MIN_MENU_ORDER_COUNT = 1;
 
     private final Map<String, Integer> orders;
 
@@ -34,21 +40,21 @@ public class Order {
                     .toList();
             validateSplitOrderSize(splitOrder);
             mappedOrders.put(
-                    splitOrder.get(0),
-                    Convert.stringToInteger(splitOrder.get(1), ORDER_INPUT_ERROR_MESSAGE)
+                    splitOrder.get(MENU_ORDER),
+                    Convert.stringToInteger(splitOrder.get(MENU_ORDER_COUNT_STRING), ORDER_INPUT_ERROR_MESSAGE)
             );
         }
         return mappedOrders;
     }
 
     private void validateOrderEndChar(String order) {
-        if (order.endsWith("-")) {
+        if (order.endsWith(DASH)) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
 
     private void validateSplitOrderSize(List<String> splitOrder) {
-        if (splitOrder.size() != 2) {
+        if (splitOrder.size() != CORRECT_SPLIT_ORDER_SIZE) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
@@ -60,7 +66,7 @@ public class Order {
     }
 
     private void validateTotalMenuCountRange(Map<String, Integer> orders) {
-        if (getOrderCount(orders) > 20) {
+        if (getOrderCount(orders) > MAX_MENU_ORDERS_COUNT) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
@@ -72,7 +78,7 @@ public class Order {
     }
 
     private void checkMenuCountRange(int orderCount) {
-        if (orderCount < 1) {
+        if (orderCount < MIN_MENU_ORDER_COUNT) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
@@ -101,21 +107,19 @@ public class Order {
     public int calculateTotalOrderAmount() {
         int totalOrderAmount = 0;
         for (Map.Entry<String, Integer> entry : orders.entrySet()) {
-            totalOrderAmount += orderAmountByMenuType(entry);
+            totalOrderAmount += calculateOrderAmountByMenuType(entry);
         }
         return totalOrderAmount;
     }
 
-    private int orderAmountByMenuType(Map.Entry<String, Integer> entry) {
-        int ordersAmount = 0;
-        ordersAmount += appetizerOrderAmount(entry);
-        ordersAmount += mainOrderAmount(entry);
-        ordersAmount += dessertOrderAmount(entry);
-        ordersAmount += beverageOrderAmount(entry);
-        return ordersAmount;
+    private int calculateOrderAmountByMenuType(Map.Entry<String, Integer> entry) {
+        return calculateAppetizerOrderAmount(entry)
+                + calculateMainOrderAmount(entry)
+                + calculateDessertOrderAmount(entry)
+                + calculateBeverageOrderAmount(entry);
     }
 
-    private int appetizerOrderAmount(Map.Entry<String, Integer> entry) {
+    private int calculateAppetizerOrderAmount(Map.Entry<String, Integer> entry) {
         int appetizerOrderAmount = 0;
         for (Appetizer appetizer : Appetizer.values()) {
             if (entry.getKey().equals(appetizer.getName())) {
@@ -125,7 +129,7 @@ public class Order {
         return appetizerOrderAmount;
     }
 
-    private int mainOrderAmount(Map.Entry<String, Integer> entry) {
+    private int calculateMainOrderAmount(Map.Entry<String, Integer> entry) {
         int mainOrderAmount = 0;
         for (Main main : Main.values()) {
             if (entry.getKey().equals(main.getName())) {
@@ -135,7 +139,7 @@ public class Order {
         return mainOrderAmount;
     }
 
-    private int dessertOrderAmount(Map.Entry<String, Integer> entry) {
+    private int calculateDessertOrderAmount(Map.Entry<String, Integer> entry) {
         int dessertOrderAmount = 0;
         for (Dessert dessert : Dessert.values()) {
             if (entry.getKey().equals(dessert.getName())) {
@@ -145,7 +149,7 @@ public class Order {
         return dessertOrderAmount;
     }
 
-    private int beverageOrderAmount(Map.Entry<String, Integer> entry) {
+    private int calculateBeverageOrderAmount(Map.Entry<String, Integer> entry) {
         int beverageOrderAmount = 0;
         for (Beverage beverage : Beverage.values()) {
             if (entry.getKey().equals(beverage.getName())) {
