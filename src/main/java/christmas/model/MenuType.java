@@ -14,6 +14,10 @@ public class MenuType {
         this.menuType = menuType;
     }
 
+    public Map<String, Integer> getMenuType() {
+        return menuType;
+    }
+
     public void countMenuType(Map<String, Integer> orders) {
         setUp();
         countAppetizer(orders);
