@@ -1,6 +1,6 @@
-package christmas.service;
+package christmas.model;
 
-public class ChristmasService {
+public class Event {
 
     public boolean isEventApplication(int totalOrderAmount) {
         if (totalOrderAmount >= 10000) {
