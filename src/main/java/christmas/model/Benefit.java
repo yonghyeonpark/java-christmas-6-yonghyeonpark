@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.model.menu.MenuType;
 import christmas.util.Convert;
 import java.util.Map;
 
@@ -11,6 +12,8 @@ public class Benefit {
     private static final int D_DAY_DISCOUNT_INCREMENT_AMOUNT = 100;
     private static final int WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU = 2023;
     private static final int SPECIAL_DAY_DISCOUNT_AMOUNT = 1000;
+    private static final int ONE_CHAMPAGNE_PRICE = 25000;
+    private static final int ZERO = 0;
 
     private final Map<BenefitType, Integer> benefits;
     private final Date date;
@@ -40,23 +43,25 @@ public class Benefit {
     }
 
     public void calculateWeekDayOrWeekendDiscountAmount(Map<String, Integer> menuType) {
-        if (date.judgeIsWeekdayOrWeekend().equals("weekday")) {
-            benefits.put(BenefitType.WEEKDAY, menuType.get("디저트") * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
+        if (date.judgeIsWeekdayOrWeekend().equals(Day.WEEKDAY.getName())) {
+            benefits.put(BenefitType.WEEKDAY,
+                    menuType.get(MenuType.Dessert.getName()) * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
         }
-        if (date.judgeIsWeekdayOrWeekend().equals("weekend")) {
-            benefits.put(BenefitType.WEEKEND, menuType.get("메인") * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
+        if (date.judgeIsWeekdayOrWeekend().equals(Day.WEEKEND.getName())) {
+            benefits.put(BenefitType.WEEKEND,
+                    menuType.get(MenuType.Main.getName()) * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
         }
     }
 
     public void calculateSpecialDayDiscountAmount() {
-        if (date.judgeIsSpecialDay().equals("specialDay")) {
+        if (date.judgeIsSpecialDay().equals(Day.SPECIAL_DAY.getName())) {
             benefits.put(BenefitType.SPECIAL, SPECIAL_DAY_DISCOUNT_AMOUNT);
         }
     }
 
     public void calculateGiftEventDiscountAmount(String giftMenu) {
-        if (giftMenu.equals("샴페인 1개")) {
-            benefits.put(BenefitType.GIFT_EVENT, 25000);
+        if (giftMenu.equals(EventGift.ONE_CHAMPAGNE.getName())) {
+            benefits.put(BenefitType.GIFT_EVENT, ONE_CHAMPAGNE_PRICE);
         }
     }
 
@@ -80,14 +85,14 @@ public class Benefit {
         if (!entry.getKey().equals(BenefitType.GIFT_EVENT)) {
             return entry.getValue();
         }
-        return 0;
+        return ZERO;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<BenefitType, Integer> entry : benefits.entrySet()) {
-            if (entry.getValue() != 0) {
+            if (entry.getValue() != ZERO) {
                 stringBuilder.append(entry.getKey().getName())
                         .append(": ")
                         .append("-")
