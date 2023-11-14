@@ -75,7 +75,7 @@ public class BenefitTest {
     void calculateGiftEventDiscountAmount1(String giftMenu, int expected) {
         Benefit benefit = new Benefit(benefits, new Date("15"));
 
-        benefit.calculateGiftEventDiscountAmount(giftMenu);
+        benefit.calculateGiftEventAmount(giftMenu);
 
         assertThat(benefits.get(BenefitType.GIFT_EVENT)).isEqualTo(expected);
     }
@@ -90,7 +90,7 @@ public class BenefitTest {
         benefit.calculateDDayDiscountAmount();
         benefit.calculateWeekDayOrWeekendDiscountAmount(menuType);
         benefit.calculateSpecialDayDiscountAmount();
-        benefit.calculateGiftEventDiscountAmount("샴페인 1개");
+        benefit.calculateGiftEventAmount("샴페인 1개");
 
         int totalBenefitAmount = benefit.calculateTotalBenefitAmount();
 
@@ -107,7 +107,7 @@ public class BenefitTest {
         benefit.calculateDDayDiscountAmount();
         benefit.calculateWeekDayOrWeekendDiscountAmount(menuType);
         benefit.calculateSpecialDayDiscountAmount();
-        benefit.calculateGiftEventDiscountAmount("샴페인 1개");
+        benefit.calculateGiftEventAmount("샴페인 1개");
 
         int totalDiscountAmount = benefit.calculateTotalDiscountAmount();
 

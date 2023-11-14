@@ -59,7 +59,7 @@ public class Benefit {
         }
     }
 
-    public void calculateGiftEventDiscountAmount(String giftMenu) {
+    public void calculateGiftEventAmount(String giftMenu) {
         if (giftMenu.equals(EventGift.ONE_CHAMPAGNE.getName())) {
             benefits.put(BenefitType.GIFT_EVENT, ONE_CHAMPAGNE_PRICE);
         }

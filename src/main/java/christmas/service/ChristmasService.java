@@ -28,7 +28,7 @@ public class ChristmasService {
         benefit.calculateDDayDiscountAmount();
         benefit.calculateWeekDayOrWeekendDiscountAmount(menu.getMenuType());
         benefit.calculateSpecialDayDiscountAmount();
-        benefit.calculateGiftEventDiscountAmount(getGiftMenu());
+        benefit.calculateGiftEventAmount(getGiftMenu());
     }
 
     public String getOrders() {
