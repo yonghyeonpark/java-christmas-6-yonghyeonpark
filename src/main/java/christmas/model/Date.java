@@ -11,8 +11,8 @@ public class Date {
     private static final int ONE = 1;
     private static final int NOTHING = -1;
     private static final String DATE_INPUT_ERROR_MESSAGE = ErrorMessage.DATE.getContent();
-    private static final List<Integer> weekend = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
-    private static final List<Integer> specialDay = List.of(3, 10, 17, 24, 25, 31);
+    private static final List<Integer> WEEKEND = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
+    private static final List<Integer> SPECIAL_DAY = List.of(3, 10, 17, 24, 25, 31);
 
     private final int date;
 
@@ -33,17 +33,17 @@ public class Date {
     }
 
     public String judgeIsWeekdayOrWeekend() {
-        if (weekend.contains(date)) {
-            return "weekend";
+        if (WEEKEND.contains(date)) {
+            return Day.WEEKEND.getName();
         }
-        return "weekday";
+        return Day.WEEKDAY.getName();
     }
 
     public String judgeIsSpecialDay() {
-        if (specialDay.contains(date)) {
-            return "specialDay";
+        if (SPECIAL_DAY.contains(date)) {
+            return Day.SPECIAL_DAY.getName();
         }
-        return "nothing";
+        return Day.ORDINARY_DAY.getName();
     }
 
     public int CalculationForDDayDiscountAmount() {
