@@ -12,7 +12,14 @@ public class MenuType {
 
     public MenuType(Map<String, Integer> menuType) {
         this.menuType = menuType;
+    }
+
+    public void countMenuType(Map<String, Integer> orders) {
         setUp();
+        countAppetizer(orders);
+        countMain(orders);
+        countDessert(orders);
+        countBeverage(orders);
     }
 
     private void setUp() {
@@ -20,13 +27,6 @@ public class MenuType {
         menuType.put("메인", 0);
         menuType.put("디저트", 0);
         menuType.put("음료", 0);
-    }
-
-    public void countMenuType(Map<String, Integer> orders) {
-        countAppetizer(orders);
-        countMain(orders);
-        countDessert(orders);
-        countBeverage(orders);
     }
 
     private void countAppetizer(Map<String, Integer> orders) {
