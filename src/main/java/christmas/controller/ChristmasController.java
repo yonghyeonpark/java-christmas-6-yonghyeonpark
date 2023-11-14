@@ -1,7 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Date;
-import christmas.model.MenuType;
+import christmas.model.Menu;
 import christmas.model.Order;
 import christmas.service.ChristmasService;
 import christmas.view.InputView;
@@ -32,9 +32,9 @@ public class ChristmasController {
 
     private void setUp() {
         Date date = getDate();
-        MenuType menuType = new MenuType(new HashMap<>());
-        Order order = getOrder(menuType);
-        christmasService = new ChristmasService(date, menuType, order);
+        Menu menu = new Menu(new HashMap<>());
+        Order order = getOrder(menu);
+        christmasService = new ChristmasService(date, menu, order);
     }
 
     private Date getDate() {
@@ -48,11 +48,11 @@ public class ChristmasController {
         }
     }
 
-    private Order getOrder(MenuType menuType) {
+    private Order getOrder(Menu menu) {
         while (true) {
             try {
                 List<String> orders = inputView.readOrder();
-                return new Order(orders, menuType);
+                return new Order(orders, menu);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -16,13 +16,13 @@ public class Order {
 
     private final Map<String, Integer> orders;
 
-    public Order(List<String> orders, MenuType menuType) {
+    public Order(List<String> orders, Menu menu) {
         Map<String, Integer> mappedOrders = convertListToMapByDash(orders);
         validateDuplicate(orders, mappedOrders);
         validateTotalMenuCountRange(mappedOrders);
         validateMenuCountRange(mappedOrders);
-        validateMenuType(mappedOrders, menuType);
-        validateMenu(mappedOrders, menuType);
+        validateMenuType(mappedOrders, menu);
+        validateMenu(mappedOrders, menu);
         this.orders = mappedOrders;
     }
 
@@ -77,15 +77,15 @@ public class Order {
         }
     }
 
-    private void validateMenuType(Map<String, Integer> orders, MenuType menuType) {
-        menuType.countMenuType(orders);
-        if (menuType.isOrderOnlyBeverage()) {
+    private void validateMenuType(Map<String, Integer> orders, Menu menu) {
+        menu.countMenuType(orders);
+        if (menu.isOrderOnlyBeverage()) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
 
-    private void validateMenu(Map<String, Integer> orders, MenuType menuType) {
-        if (getOrderCount(orders) != menuType.getMenuTypeTotalCount()) {
+    private void validateMenu(Map<String, Integer> orders, Menu menu) {
+        if (getOrderCount(orders) != menu.getMenuTypeTotalCount()) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }

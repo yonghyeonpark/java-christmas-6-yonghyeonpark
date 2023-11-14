@@ -3,21 +3,21 @@ package christmas.service;
 import christmas.model.Benefit;
 import christmas.model.Date;
 import christmas.model.Event;
-import christmas.model.MenuType;
+import christmas.model.Menu;
 import christmas.model.Order;
 import java.util.HashMap;
 
 public class ChristmasService {
 
     private final Date date;
-    private final MenuType menuType;
+    private final Menu menu;
     private final Order order;
     private final Benefit benefit;
     private final Event event;
 
-    public ChristmasService(Date date, MenuType menuType, Order order) {
+    public ChristmasService(Date date, Menu menu, Order order) {
         this.date = date;
-        this.menuType = menuType;
+        this.menu = menu;
         this.order = order;
         this.benefit = new Benefit(new HashMap<>(), date);
         this.event = new Event();
@@ -26,7 +26,7 @@ public class ChristmasService {
 
     private void setUp() {
         benefit.calculateDDayDiscountAmount();
-        benefit.calculateWeekDayOrWeekendDiscountAmount(menuType.getMenuType());
+        benefit.calculateWeekDayOrWeekendDiscountAmount(menu.getMenuType());
         benefit.calculateSpecialDayDiscountAmount();
         benefit.calculateGiftEventDiscountAmount(getGiftMenu());
     }

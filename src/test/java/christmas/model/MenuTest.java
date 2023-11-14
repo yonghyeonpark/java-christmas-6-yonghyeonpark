@@ -7,13 +7,13 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class MenuTypeTest {
+public class MenuTest {
 
     @DisplayName("주문에 대해 메뉴 종류를 분류하고 각 개수를 구한다.")
     @Test
     void countMenuType() {
         Map<String, Integer> menuType = new HashMap<>();
-        MenuType menu = new MenuType(menuType);
+        Menu menu = new Menu(menuType);
         menu.countMenuType(Map.of(
                 "양송이수프", 1,
                 "타파스", 2,

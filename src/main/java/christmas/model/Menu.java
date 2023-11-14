@@ -6,11 +6,17 @@ import christmas.model.menu.Dessert;
 import christmas.model.menu.Main;
 import java.util.Map;
 
-public class MenuType {
+public class Menu {
+
+    private static final String APPETIZER = christmas.model.menu.MenuType.Appetizer.getName();
+    private static final String MAIN = christmas.model.menu.MenuType.Main.getName();
+    private static final String DESSERT = christmas.model.menu.MenuType.Dessert.getName();
+    private static final String BEVERAGE = christmas.model.menu.MenuType.Beverage.getName();
+    private static final int INITIAL_VALUE = 0;
 
     private final Map<String, Integer> menuType;
 
-    public MenuType(Map<String, Integer> menuType) {
+    public Menu(Map<String, Integer> menuType) {
         this.menuType = menuType;
     }
 
@@ -27,16 +33,16 @@ public class MenuType {
     }
 
     private void setUp() {
-        menuType.put("애피타이저", 0);
-        menuType.put("메인", 0);
-        menuType.put("디저트", 0);
-        menuType.put("음료", 0);
+        menuType.put(APPETIZER, INITIAL_VALUE);
+        menuType.put(MAIN, INITIAL_VALUE);
+        menuType.put(DESSERT, INITIAL_VALUE);
+        menuType.put(BEVERAGE, INITIAL_VALUE);
     }
 
     private void countAppetizer(Map<String, Integer> orders) {
         for (Appetizer appetizer : Appetizer.values()) {
             if (orders.containsKey(appetizer.getName())) {
-                menuType.put("애피타이저", menuType.get("애피타이저") + orders.get(appetizer.getName()));
+                menuType.put(APPETIZER, menuType.get(APPETIZER) + orders.get(appetizer.getName()));
             }
         }
     }
@@ -44,7 +50,7 @@ public class MenuType {
     private void countMain(Map<String, Integer> orders) {
         for (Main main : Main.values()) {
             if (orders.containsKey(main.getName())) {
-                menuType.put("메인", menuType.get("메인") + orders.get(main.getName()));
+                menuType.put(MAIN, menuType.get(MAIN) + orders.get(main.getName()));
             }
         }
     }
@@ -52,7 +58,7 @@ public class MenuType {
     private void countDessert(Map<String, Integer> orders) {
         for (Dessert dessert : Dessert.values()) {
             if (orders.containsKey(dessert.getName())) {
-                menuType.put("디저트", menuType.get("디저트") + orders.get(dessert.getName()));
+                menuType.put(DESSERT, menuType.get(DESSERT) + orders.get(dessert.getName()));
             }
         }
     }
@@ -60,13 +66,15 @@ public class MenuType {
     private void countBeverage(Map<String, Integer> orders) {
         for (Beverage beverage : Beverage.values()) {
             if (orders.containsKey(beverage.getName())) {
-                menuType.put("음료", menuType.get("음료") + orders.get(beverage.getName()));
+                menuType.put(BEVERAGE, menuType.get(BEVERAGE) + orders.get(beverage.getName()));
             }
         }
     }
 
     public boolean isOrderOnlyBeverage() {
-        return (menuType.get("애피타이저") == 0) && (menuType.get("메인") == 0) && (menuType.get("디저트") == 0);
+        return (menuType.get(APPETIZER) == INITIAL_VALUE)
+                && (menuType.get(MAIN) == INITIAL_VALUE)
+                && (menuType.get(DESSERT) == INITIAL_VALUE);
     }
 
     public int getMenuTypeTotalCount() {
