@@ -116,6 +116,7 @@ public class OrderTest {
     @Test
     void calculateTotalOrderAmount() {
         Order order = new Order(List.of("양송이수프-2", "티본스테이크-2", "레드와인-2", "아이스크림-2"), menu);
+
         int totalOrderAmount = order.calculateTotalOrderAmount();
 
         assertThat(totalOrderAmount).isEqualTo(252000);
