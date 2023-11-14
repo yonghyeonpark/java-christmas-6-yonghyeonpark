@@ -21,7 +21,7 @@ public class BenefitTest {
 
     @DisplayName("크리스마스 디데이 할인 금액을 계산한다.")
     @ParameterizedTest(name = "[테스트 케이스 {index}] 방문 날짜 : {0}일, 크리스마스 디데이 할인 금액 : {1}원")
-    @CsvSource({"1, 1000", "25, 3400"})
+    @CsvSource({"1, 1000", "25, 3400", "26, 0"})
     void calculateDDayDiscountAmount(String date, int expected) {
         Benefit benefit = new Benefit(benefits, new Date(date));
 
@@ -87,11 +87,11 @@ public class BenefitTest {
         Map<String, Integer> menuType = new HashMap<>();
         menuType.put("메인", 2);
         menuType.put("디저트", 3);
-
         benefit.calculateDDayDiscountAmount();
         benefit.calculateWeekDayOrWeekendDiscountAmount(menuType);
         benefit.calculateSpecialDayDiscountAmount();
         benefit.calculateGiftEventDiscountAmount("샴페인 1개");
+
         int totalBenefitAmount = benefit.calculateTotalBenefitAmount();
 
         assertThat(totalBenefitAmount).isEqualTo(34669);
@@ -104,11 +104,11 @@ public class BenefitTest {
         Map<String, Integer> menuType = new HashMap<>();
         menuType.put("메인", 2);
         menuType.put("디저트", 3);
-
         benefit.calculateDDayDiscountAmount();
         benefit.calculateWeekDayOrWeekendDiscountAmount(menuType);
         benefit.calculateSpecialDayDiscountAmount();
         benefit.calculateGiftEventDiscountAmount("샴페인 1개");
+
         int totalDiscountAmount = benefit.calculateTotalDiscountAmount();
 
         assertThat(totalDiscountAmount).isEqualTo(9669);
