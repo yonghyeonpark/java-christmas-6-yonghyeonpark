@@ -22,6 +22,10 @@ public class Date {
         this.date = date;
     }
 
+    public int getDate() {
+        return date;
+    }
+
     private void validateRange(int date) {
         if (date < FIRST_DAY_OF_DECEMBER || date > LAST_DAY_OF_DECEMBER) {
             throw new IllegalArgumentException(DATE_INPUT_ERROR_MESSAGE);
