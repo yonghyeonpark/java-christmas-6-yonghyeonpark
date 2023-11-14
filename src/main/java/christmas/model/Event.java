@@ -2,18 +2,25 @@ package christmas.model;
 
 public class Event {
 
+    private static final String NOTHING = "없음";
+    private static final int MIN_AMOUNT_FOR_EVENT_APPLICATION = 10000;
+    private static final int MIN_AMOUNT_FOR_GIFT_MENU = 120000;
+    private static final int MIN_AMOUNT_FOR_STAR_BADGE = 5000;
+    private static final int MIN_AMOUNT_FOR_TREE_BADGE = 10000;
+    private static final int MIN_AMOUNT_FOR_SANTA_BADGE = 20000;
+
     public boolean isEventApplication(int totalOrderAmount) {
-        if (totalOrderAmount >= 10000) {
+        if (totalOrderAmount >= MIN_AMOUNT_FOR_EVENT_APPLICATION) {
             return true;
         }
         return false;
     }
 
     public String getGiftMenu(int totalOrderAmount) {
-        if (totalOrderAmount >= 120000) {
-            return "샴페인 1개";
+        if (totalOrderAmount >= MIN_AMOUNT_FOR_GIFT_MENU) {
+            return EventGift.ONE_CHAMPAGNE.getName();
         }
-        return "없음";
+        return NOTHING;
     }
 
     public int calculatePaymentAmount(int totalOrderAmount, int totalDiscountAmount) {
@@ -22,26 +29,26 @@ public class Event {
 
     public String judgeEventBadge(int totalBenefitAmount) {
         if (isStarBadge(totalBenefitAmount)) {
-            return "별";
+            return EventGift.STAR_BADGE.getName();
         }
         if (isTreeBadge(totalBenefitAmount)) {
-            return "트리";
+            return EventGift.TREE_BADGE.getName();
         }
         if (isSantaBadge(totalBenefitAmount)) {
-            return "산타";
+            return EventGift.SANTA_BADGE.getName();
         }
-        return "없음";
+        return NOTHING;
     }
 
     private boolean isStarBadge(int totalBenefitAmount) {
-        return (totalBenefitAmount >= 5000) && (totalBenefitAmount < 10000);
+        return (totalBenefitAmount >= MIN_AMOUNT_FOR_STAR_BADGE) && (totalBenefitAmount < MIN_AMOUNT_FOR_TREE_BADGE);
     }
 
     private boolean isTreeBadge(int totalBenefitAmount) {
-        return (totalBenefitAmount >= 10000) && (totalBenefitAmount < 20000);
+        return (totalBenefitAmount >= MIN_AMOUNT_FOR_TREE_BADGE) && (totalBenefitAmount < MIN_AMOUNT_FOR_SANTA_BADGE);
     }
 
     private boolean isSantaBadge(int totalBenefitAmount) {
-        return totalBenefitAmount >= 20000;
+        return totalBenefitAmount >= MIN_AMOUNT_FOR_SANTA_BADGE;
     }
 }
