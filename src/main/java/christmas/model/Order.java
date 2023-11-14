@@ -16,12 +16,11 @@ public class Order {
 
     private final Map<String, Integer> orders;
 
-    public Order(List<String> orders) {
+    public Order(List<String> orders, MenuType menuType) {
         Map<String, Integer> mappedOrders = convertListToMapByDash(orders);
         validateDuplicate(orders, mappedOrders);
         validateTotalMenuCountRange(mappedOrders);
         validateMenuCountRange(mappedOrders);
-        MenuType menuType = new MenuType(new HashMap<>());
         validateMenuType(mappedOrders, menuType);
         validateMenu(mappedOrders, menuType);
         this.orders = mappedOrders;
