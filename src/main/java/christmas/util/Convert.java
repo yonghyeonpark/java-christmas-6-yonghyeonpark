@@ -20,7 +20,7 @@ public class Convert {
     }
 
     public static String formatIntegerToString(int amount) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###원");
         return decimalFormat.format(amount);
     }
 }

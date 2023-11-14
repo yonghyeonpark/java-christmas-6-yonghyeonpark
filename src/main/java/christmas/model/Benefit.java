@@ -92,7 +92,7 @@ public class Benefit {
                         .append(": ")
                         .append("-")
                         .append(Convert.formatIntegerToString(entry.getValue()))
-                        .append("원\n");
+                        .append("\n");
             }
         }
         return stringBuilder.toString();

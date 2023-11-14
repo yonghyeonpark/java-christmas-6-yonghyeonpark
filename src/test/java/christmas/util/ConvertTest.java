@@ -36,6 +36,6 @@ public class ConvertTest {
         int amount = 25000000;
         String formattedInteger = Convert.formatIntegerToString(amount);
 
-        assertThat(formattedInteger).isEqualTo("25,000,000");
+        assertThat(formattedInteger).isEqualTo("25,000,000원");
     }
 }
