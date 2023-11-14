@@ -92,14 +92,18 @@ public class Benefit {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<BenefitType, Integer> entry : benefits.entrySet()) {
-            if (entry.getValue() != ZERO) {
-                stringBuilder.append(entry.getKey().getName())
-                        .append(": ")
-                        .append("-")
-                        .append(Convert.formatIntegerToString(entry.getValue()))
-                        .append("\n");
-            }
+            checkIsZeroAndBuildString(entry, stringBuilder);
         }
         return stringBuilder.toString();
+    }
+
+    private void checkIsZeroAndBuildString(Map.Entry<BenefitType, Integer> entry, StringBuilder stringBuilder) {
+        if (entry.getValue() != ZERO) {
+            stringBuilder.append(entry.getKey().getName())
+                    .append(": ")
+                    .append("-")
+                    .append(Convert.formatIntegerToString(entry.getValue()))
+                    .append("\n");
+        }
     }
 }
