@@ -52,6 +52,7 @@ public class OutputView {
         }
         if (!benefits.isEmpty()) {
             System.out.println(benefits);
+            System.out.println();
         }
     }
 

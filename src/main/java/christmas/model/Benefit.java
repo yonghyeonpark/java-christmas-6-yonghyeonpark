@@ -101,6 +101,7 @@ public class Benefit {
         for (Map.Entry<BenefitType, Integer> entry : benefits.entrySet()) {
             checkIsZeroAndBuildString(entry, stringBuilder);
         }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         return stringBuilder.toString();
     }
 
