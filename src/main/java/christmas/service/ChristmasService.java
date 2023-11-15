@@ -31,6 +31,10 @@ public class ChristmasService {
         benefit.calculateGiftEventAmount(getGiftMenu());
     }
 
+    public boolean isEventApplication() {
+        return event.isEventApplication(getTotalOrderAmount());
+    }
+
     public String getOrders() {
         return order.toString();
     }

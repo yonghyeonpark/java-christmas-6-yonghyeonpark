@@ -11,6 +11,9 @@ import java.util.List;
 
 public class ChristmasController {
 
+    private static final int ZERO = 0;
+    private static final String NOTHING = "없음";
+
     private final InputView inputView;
     private final OutputView outputView;
     private ChristmasService christmasService;
@@ -60,13 +63,33 @@ public class ChristmasController {
     }
 
     private void eventBenefitPreview() {
+        if (christmasService.isEventApplication()) {
+            applyEvent();
+        }
+        if (!christmasService.isEventApplication()) {
+            notApplyEvent();
+        }
+    }
+
+    private void applyEvent() {
         outputView.printEventBenefitPreviewMessage(christmasService.getDate());
         outputView.printOrderMenu(christmasService.getOrders());
         outputView.printTotalOrderAmount(christmasService.getTotalOrderAmount());
         outputView.printGiftMenu(christmasService.getGiftMenu());
         outputView.printBenefits(christmasService.getBenefits());
         outputView.printTotalBenefitAmount(christmasService.getTotalBenefitAmount());
-        outputView.printTotalPaymentAmount(christmasService.getPaymentAmount());
+        outputView.printPaymentAmount(christmasService.getPaymentAmount());
         outputView.printEventBadge(christmasService.getEventBadge());
+    }
+
+    private void notApplyEvent() {
+        outputView.printEventBenefitPreviewMessage(christmasService.getDate());
+        outputView.printOrderMenu(christmasService.getOrders());
+        outputView.printTotalOrderAmount(christmasService.getTotalOrderAmount());
+        outputView.printGiftMenu(NOTHING);
+        outputView.printBenefits(NOTHING);
+        outputView.printTotalBenefitAmount(ZERO);
+        outputView.printPaymentAmount(christmasService.getTotalOrderAmount());
+        outputView.printEventBadge(NOTHING);
     }
 }
