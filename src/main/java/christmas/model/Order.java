@@ -5,7 +5,6 @@ import christmas.model.menu.Beverage;
 import christmas.model.menu.Dessert;
 import christmas.model.menu.Main;
 import christmas.util.Convert;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +35,7 @@ public class Order {
         Map<String, Integer> mappedOrders = new HashMap<>();
         for (String order : orders) {
             validateOrderEndChar(order);
-            List<String> splitOrder = Arrays.stream(order.split("-"))
-                    .toList();
+            List<String> splitOrder = Convert.stringToListByDash(order);
             validateSplitOrderSize(splitOrder);
             mappedOrders.put(
                     splitOrder.get(MENU_ORDER),
