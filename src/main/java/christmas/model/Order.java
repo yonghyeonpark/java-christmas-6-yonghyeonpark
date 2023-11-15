@@ -42,8 +42,10 @@ public class Order {
             validateSplitOrderSize(splitUnorganizedOrder);
             orders.put(
                     splitUnorganizedOrder.get(ORDER_MENU),
-                    Convert.stringToInteger(splitUnorganizedOrder.get(ORDER_MENU_COUNT_STRING),
-                            ORDER_INPUT_ERROR_MESSAGE)
+                    Convert.stringToInteger(
+                            splitUnorganizedOrder.get(ORDER_MENU_COUNT_STRING),
+                            ORDER_INPUT_ERROR_MESSAGE
+                    )
             );
         }
         return orders;
@@ -125,7 +127,7 @@ public class Order {
         int appetizerOrderAmount = 0;
         for (Appetizer appetizer : Appetizer.values()) {
             if (entry.getKey().equals(appetizer.getName())) {
-                appetizerOrderAmount += (entry.getValue()) * (appetizer.getPrice());
+                appetizerOrderAmount += entry.getValue() * appetizer.getPrice();
             }
         }
         return appetizerOrderAmount;
@@ -135,7 +137,7 @@ public class Order {
         int mainOrderAmount = 0;
         for (Main main : Main.values()) {
             if (entry.getKey().equals(main.getName())) {
-                mainOrderAmount += (entry.getValue()) * (main.getPrice());
+                mainOrderAmount += entry.getValue() * main.getPrice();
             }
         }
         return mainOrderAmount;
@@ -145,7 +147,7 @@ public class Order {
         int dessertOrderAmount = 0;
         for (Dessert dessert : Dessert.values()) {
             if (entry.getKey().equals(dessert.getName())) {
-                dessertOrderAmount += (entry.getValue()) * (dessert.getPrice());
+                dessertOrderAmount += entry.getValue() * dessert.getPrice();
             }
         }
         return dessertOrderAmount;
@@ -155,7 +157,7 @@ public class Order {
         int beverageOrderAmount = 0;
         for (Beverage beverage : Beverage.values()) {
             if (entry.getKey().equals(beverage.getName())) {
-                beverageOrderAmount += (entry.getValue()) * (beverage.getPrice());
+                beverageOrderAmount += entry.getValue() * beverage.getPrice();
             }
         }
         return beverageOrderAmount;

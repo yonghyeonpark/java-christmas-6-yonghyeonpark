@@ -47,12 +47,16 @@ public class Benefit {
 
     public void calculateWeekDayOrWeekendDiscountAmount(Map<String, Integer> menuType) {
         if (date.judgeIsWeekdayOrWeekend().equals(Day.WEEKDAY.getName())) {
-            benefits.put(BenefitType.WEEKDAY,
-                    menuType.get(MenuType.Dessert.getName()) * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
+            benefits.put(
+                    BenefitType.WEEKDAY,
+                    menuType.get(MenuType.Dessert.getName()) * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU
+            );
         }
         if (date.judgeIsWeekdayOrWeekend().equals(Day.WEEKEND.getName())) {
-            benefits.put(BenefitType.WEEKEND,
-                    menuType.get(MenuType.Main.getName()) * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU);
+            benefits.put(
+                    BenefitType.WEEKEND,
+                    menuType.get(MenuType.Main.getName()) * WEEKDAY_AND_WEEKEND_DISCOUNT_AMOUNT_PER_MENU
+            );
         }
     }
 
