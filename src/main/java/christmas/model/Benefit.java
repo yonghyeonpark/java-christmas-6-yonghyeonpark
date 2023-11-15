@@ -14,6 +14,9 @@ public class Benefit {
     private static final int SPECIAL_DAY_DISCOUNT_AMOUNT = 1000;
     private static final int ONE_CHAMPAGNE_PRICE = 25000;
     private static final int ZERO = 0;
+    private static final String COLON_SPACE = ": ";
+    private static final String DASH = "-";
+    private static final String NEW_LINE = "\n";
 
     private final Map<BenefitType, Integer> benefits;
     private final Date date;
@@ -100,10 +103,10 @@ public class Benefit {
     private void checkIsZeroAndBuildString(Map.Entry<BenefitType, Integer> entry, StringBuilder stringBuilder) {
         if (entry.getValue() != ZERO) {
             stringBuilder.append(entry.getKey().getName())
-                    .append(": ")
-                    .append("-")
+                    .append(COLON_SPACE)
+                    .append(DASH)
                     .append(Convert.formatIntegerToString(entry.getValue()))
-                    .append("\n");
+                    .append(NEW_LINE);
         }
     }
 }

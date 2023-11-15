@@ -2,12 +2,12 @@ package christmas.model;
 
 public class Event {
 
-    private static final String NOTHING = "없음";
     private static final int MIN_AMOUNT_FOR_EVENT_APPLICATION = 10000;
     private static final int MIN_AMOUNT_FOR_GIFT_MENU = 120000;
     private static final int MIN_AMOUNT_FOR_STAR_BADGE = 5000;
     private static final int MIN_AMOUNT_FOR_TREE_BADGE = 10000;
     private static final int MIN_AMOUNT_FOR_SANTA_BADGE = 20000;
+    private static final String NOTHING = "없음";
 
     public boolean isEventApplication(int totalOrderAmount) {
         if (totalOrderAmount >= MIN_AMOUNT_FOR_EVENT_APPLICATION) {

@@ -11,13 +11,16 @@ import java.util.Map;
 
 public class Order {
 
-    private static final String ORDER_INPUT_ERROR_MESSAGE = ErrorMessageType.ORDER.getContent();
     private static final int ORDER_MENU = 0;
     private static final int ORDER_MENU_COUNT_STRING = 1;
-    private static final String DASH = "-";
     private static final int CORRECT_SPLIT_ORDER_SIZE = 2;
     private static final int MAX_MENU_ORDERS_COUNT = 20;
     private static final int MIN_MENU_ORDER_COUNT = 1;
+    private static final String ORDER_INPUT_ERROR_MESSAGE = ErrorMessageType.ORDER.getContent();
+    private static final String DASH = "-";
+    private static final String SPACE = " ";
+    private static final String COUNT_UNIT = "개";
+    private static final String NEW_LINE = "\n";
 
     private final Map<String, Integer> orders;
 
@@ -163,10 +166,10 @@ public class Order {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<String, Integer> entry : orders.entrySet()) {
             stringBuilder.append(entry.getKey())
-                    .append(" ")
+                    .append(SPACE)
                     .append(entry.getValue())
-                    .append("개")
-                    .append("\n");
+                    .append(COUNT_UNIT)
+                    .append(NEW_LINE);
         }
         return stringBuilder.toString();
     }

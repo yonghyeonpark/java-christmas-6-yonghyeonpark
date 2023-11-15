@@ -8,11 +8,11 @@ import java.util.Map;
 
 public class Menu {
 
+    private static final int INITIAL_VALUE = 0;
     private static final String APPETIZER = christmas.model.menu.MenuType.Appetizer.getName();
     private static final String MAIN = christmas.model.menu.MenuType.Main.getName();
     private static final String DESSERT = christmas.model.menu.MenuType.Dessert.getName();
     private static final String BEVERAGE = christmas.model.menu.MenuType.Beverage.getName();
-    private static final int INITIAL_VALUE = 0;
 
     private final Map<String, Integer> menuType;
 
