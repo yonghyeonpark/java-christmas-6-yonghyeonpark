@@ -19,6 +19,11 @@ public class Convert {
                 .toList();
     }
 
+    public static List<String> stringToListByDash(String input) {
+        return Arrays.stream(input.split("-"))
+                .toList();
+    }
+
     public static String formatIntegerToString(int amount) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###원");
         return decimalFormat.format(amount);
