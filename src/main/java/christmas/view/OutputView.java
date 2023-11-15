@@ -66,9 +66,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printTotalPaymentAmount(int totalPaymentAmount) {
+    public void printPaymentAmount(int paymentAmount) {
         System.out.println(TOTAL_PAYMENT_AMOUNT_MESSAGE);
-        System.out.println(Convert.formatIntegerToString(totalPaymentAmount));
+        System.out.println(Convert.formatIntegerToString(paymentAmount));
         System.out.println();
     }
 
