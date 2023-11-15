@@ -1,5 +1,6 @@
 package christmas.util;
 
+import christmas.model.ErrorMessageType;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,9 @@ public class Convert {
     }
 
     public static List<String> stringToListByComma(String input) {
+        if (input.endsWith(COMMA)) {
+            throw new IllegalArgumentException(ErrorMessageType.ORDER.getContent());
+        }
         return Arrays.stream(input.split(COMMA))
                 .toList();
     }
