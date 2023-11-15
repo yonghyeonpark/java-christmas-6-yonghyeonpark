@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Order {
 
-    private static final String ORDER_INPUT_ERROR_MESSAGE = ErrorMessage.ORDER.getContent();
+    private static final String ORDER_INPUT_ERROR_MESSAGE = ErrorMessageType.ORDER.getContent();
     private static final int ORDER_MENU = 0;
     private static final int ORDER_MENU_COUNT_STRING = 1;
     private static final String DASH = "-";

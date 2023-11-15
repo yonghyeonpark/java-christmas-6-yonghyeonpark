@@ -10,7 +10,7 @@ public class Date {
     private static final int CHRISTMAS_DAY = 25;
     private static final int ONE = 1;
     private static final int NOTHING = -1;
-    private static final String DATE_INPUT_ERROR_MESSAGE = ErrorMessage.DATE.getContent();
+    private static final String DATE_INPUT_ERROR_MESSAGE = ErrorMessageType.DATE.getContent();
     private static final List<Integer> WEEKEND = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
     private static final List<Integer> SPECIAL_DAY = List.of(3, 10, 17, 24, 25, 31);
 
