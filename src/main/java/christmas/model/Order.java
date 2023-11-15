@@ -12,8 +12,8 @@ import java.util.Map;
 public class Order {
 
     private static final String ORDER_INPUT_ERROR_MESSAGE = ErrorMessage.ORDER.getContent();
-    private static final int MENU_ORDER = 0;
-    private static final int MENU_ORDER_COUNT_STRING = 1;
+    private static final int ORDER_MENU = 0;
+    private static final int ORDER_MENU_COUNT_STRING = 1;
     private static final String DASH = "-";
     private static final int CORRECT_SPLIT_ORDER_SIZE = 2;
     private static final int MAX_MENU_ORDERS_COUNT = 20;
@@ -21,44 +21,45 @@ public class Order {
 
     private final Map<String, Integer> orders;
 
-    public Order(List<String> orders, Menu menu) {
-        Map<String, Integer> mappedOrders = convertListToMapByDash(orders);
-        validateDuplicate(orders, mappedOrders);
-        validateTotalMenuCountRange(mappedOrders);
-        validateMenuCountRange(mappedOrders);
-        validateMenuType(mappedOrders, menu);
-        validateMenu(mappedOrders, menu);
-        this.orders = mappedOrders;
+    public Order(List<String> unorganizedOrders, Menu menu) {
+        Map<String, Integer> orders = convertListToMapByDash(unorganizedOrders);
+        validateDuplicate(unorganizedOrders, orders);
+        validateTotalMenuCountRange(orders);
+        validateMenuCountRange(orders);
+        validateMenuType(orders, menu);
+        validateMenu(orders, menu);
+        this.orders = orders;
     }
 
-    private Map<String, Integer> convertListToMapByDash(List<String> orders) {
-        Map<String, Integer> mappedOrders = new HashMap<>();
-        for (String order : orders) {
-            validateOrderEndChar(order);
-            List<String> splitOrder = Convert.stringToListByDash(order);
-            validateSplitOrderSize(splitOrder);
-            mappedOrders.put(
-                    splitOrder.get(MENU_ORDER),
-                    Convert.stringToInteger(splitOrder.get(MENU_ORDER_COUNT_STRING), ORDER_INPUT_ERROR_MESSAGE)
+    private Map<String, Integer> convertListToMapByDash(List<String> unorganizedOrders) {
+        Map<String, Integer> orders = new HashMap<>();
+        for (String unorganizedOrder : unorganizedOrders) {
+            validateOrderEndChar(unorganizedOrder);
+            List<String> splitUnorganizedOrder = Convert.stringToListByDash(unorganizedOrder);
+            validateSplitOrderSize(splitUnorganizedOrder);
+            orders.put(
+                    splitUnorganizedOrder.get(ORDER_MENU),
+                    Convert.stringToInteger(splitUnorganizedOrder.get(ORDER_MENU_COUNT_STRING),
+                            ORDER_INPUT_ERROR_MESSAGE)
             );
         }
-        return mappedOrders;
+        return orders;
     }
 
-    private void validateOrderEndChar(String order) {
-        if (order.endsWith(DASH)) {
+    private void validateOrderEndChar(String unorganizedOrder) {
+        if (unorganizedOrder.endsWith(DASH)) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
 
-    private void validateSplitOrderSize(List<String> splitOrder) {
-        if (splitOrder.size() != CORRECT_SPLIT_ORDER_SIZE) {
+    private void validateSplitOrderSize(List<String> splitUnorganizedOrder) {
+        if (splitUnorganizedOrder.size() != CORRECT_SPLIT_ORDER_SIZE) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
 
-    private void validateDuplicate(List<String> orders, Map<String, Integer> mappedOrders) {
-        if (orders.size() != mappedOrders.size()) {
+    private void validateDuplicate(List<String> unorganizedOrders, Map<String, Integer> orders) {
+        if (unorganizedOrders.size() != orders.size()) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
