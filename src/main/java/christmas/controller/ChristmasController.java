@@ -51,8 +51,8 @@ public class ChristmasController {
     private Order getOrder(Menu menu) {
         while (true) {
             try {
-                List<String> orders = inputView.readOrder();
-                return new Order(orders, menu);
+                List<String> unorganizedOrders = inputView.readOrder();
+                return new Order(unorganizedOrders, menu);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
