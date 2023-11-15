@@ -64,4 +64,23 @@ public class MenuTest {
 
         assertThat(orderOnlyBeverage).isFalse();
     }
+
+    @DisplayName("종류로 분류한 주문의 총개수를 구한다.")
+    @Test
+    void calculateMenuTypeTotalCount() {
+        Map<String, Integer> menuType = new HashMap<>();
+        Menu menu = new Menu(menuType);
+        Map<String, Integer> orders = Map.of(
+                "초코케이크", 1,
+                "시저샐러드", 2,
+                "티본스테이크", 3,
+                "아이스크림", 3,
+                "제로콜라", 3
+        );
+        menu.countMenuType(orders);
+
+        int menuTypeTotalCount = menu.calculateMenuTypeTotalCount();
+
+        assertThat(menuTypeTotalCount).isEqualTo(12);
+    }
 }
