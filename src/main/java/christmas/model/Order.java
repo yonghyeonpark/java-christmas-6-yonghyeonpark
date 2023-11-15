@@ -65,7 +65,7 @@ public class Order {
     }
 
     private void validateTotalMenuCountRange(Map<String, Integer> orders) {
-        if (getOrderCount(orders) > MAX_MENU_ORDERS_COUNT) {
+        if (calculateOrderCount(orders) > MAX_MENU_ORDERS_COUNT) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
@@ -90,12 +90,12 @@ public class Order {
     }
 
     private void validateMenu(Map<String, Integer> orders, Menu menu) {
-        if (getOrderCount(orders) != menu.getMenuTypeTotalCount()) {
+        if (calculateOrderCount(orders) != menu.calculateMenuTypeTotalCount()) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR_MESSAGE);
         }
     }
 
-    private int getOrderCount(Map<String, Integer> orders) {
+    private int calculateOrderCount(Map<String, Integer> orders) {
         int orderCount = 0;
         for (Map.Entry<String, Integer> entry : orders.entrySet()) {
             orderCount += entry.getValue();

@@ -77,7 +77,7 @@ public class Menu {
                 && (menuType.get(DESSERT) == INITIAL_VALUE);
     }
 
-    public int getMenuTypeTotalCount() {
+    public int calculateMenuTypeTotalCount() {
         int menuTypeTotalCount = 0;
         for (Map.Entry<String, Integer> entry : menuType.entrySet()) {
             menuTypeTotalCount += entry.getValue();
