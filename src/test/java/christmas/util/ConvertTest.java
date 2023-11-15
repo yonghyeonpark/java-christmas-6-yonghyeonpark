@@ -42,6 +42,16 @@ public class ConvertTest {
         assertThat(list.get(1)).isEqualTo("제로콜라-1");
     }
 
+    @DisplayName("문자열이 쉼표로 끝나면 문자열의 쉼표 기준 리스트 변환 과정에서 예외가 발생한다.")
+    @Test
+    void should_ThrowIllegalArgumentException_When_StringEndWithComma() {
+        String input = "타파스-1,";
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Convert.stringToListByComma(input))
+                .withMessageContaining("[ERROR]");
+    }
+
     @DisplayName("문자열을 대시 기준으로 분리하여 리스트에 저장한다.")
     @Test
     void stringToListByDash() {
