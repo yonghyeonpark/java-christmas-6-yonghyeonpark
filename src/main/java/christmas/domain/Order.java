@@ -112,6 +112,7 @@ public class Order {
                     .append(UNIT)
                     .append(NEW_LINE);
         }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         return stringBuilder.toString();
     }
 }
