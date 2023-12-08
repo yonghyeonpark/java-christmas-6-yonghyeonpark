@@ -14,6 +14,9 @@ public class Date {
         this.date = date;
     }
 
+    public int getDate() {
+        return date;
+    }
 
     private int validateFormat(String inputDate) {
         return Convert.stringToInt(inputDate, DATE_ERROR_MESSAGE);
