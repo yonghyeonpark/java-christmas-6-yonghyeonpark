@@ -19,14 +19,23 @@ public class Benefit {
         this.order = order;
     }
 
-    public int calculateDDayDiscountAmount() {
+    public int calculateTotalAmount() {
+        int totalAmount = 0;
+        totalAmount += calculateDDayDiscountAmount();
+        totalAmount += calculateWeekEndOrWeekDayDiscountAmount();
+        totalAmount += calculateSpecialDayDiscountAmount();
+        totalAmount += calculateGiftEventAmount();
+        return totalAmount;
+    }
+
+    private int calculateDDayDiscountAmount() {
         if (date.isOverChristmas()) {
             return 0;
         }
         return D_DAY_DISCOUNT_BASIC_AMOUNT + ((date.getDate() - 1) * D_DAY_DISCOUNT_ADDITIONAL_AMOUNT);
     }
 
-    public int calculateWeekEndOrWeekDayDiscountAmount() {
+    private int calculateWeekEndOrWeekDayDiscountAmount() {
         int mainDishCount = order.countMainDish();
         if (date.isWeekEnd()) {
             return mainDishCount * WEEKEND_DISCOUNT_AMOUNT;
@@ -35,14 +44,14 @@ public class Benefit {
         return dessertCount * WEEKDAY_DISCOUNT_AMOUNT;
     }
 
-    public int calculateSpecialDayDiscountAmount() {
+    private int calculateSpecialDayDiscountAmount() {
         if (date.isSpecialDay()) {
             return SPECIAL_DAY_DISCOUNT_AMOUNT;
         }
         return 0;
     }
 
-    public int calculateGiftEventAmount() {
+    private int calculateGiftEventAmount() {
         if (order.calculateTotalAmount() > GIFT_EVENT_APPLICATION_CRITERIA) {
             return Beverage.CHAMPAGNE.getPrice();
         }
