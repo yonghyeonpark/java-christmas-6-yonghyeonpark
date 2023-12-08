@@ -76,51 +76,55 @@ public class Benefit {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        DecimalFormat decimalFormat = new DecimalFormat("-#,###원");
-        hasDDayDiscount(stringBuilder, decimalFormat);
-        hasWeekDayDiscount(stringBuilder, decimalFormat);
-        hasWeekEndDiscount(stringBuilder, decimalFormat);
-        hasSpecialDayDiscount(stringBuilder, decimalFormat);
-        hasGiftEvent(stringBuilder, decimalFormat);
+        hasDDayDiscount(stringBuilder);
+        hasWeekDayDiscount(stringBuilder);
+        hasWeekEndDiscount(stringBuilder);
+        hasSpecialDayDiscount(stringBuilder);
+        hasGiftEvent(stringBuilder);
         return stringBuilder.toString();
     }
 
-    private void hasDDayDiscount(StringBuilder stringBuilder, DecimalFormat decimalFormat) {
+    private void hasDDayDiscount(StringBuilder stringBuilder) {
         if (calculateDDayDiscountAmount() != 0) {
             stringBuilder.append(D_DAY_DISCOUNT_FORMAT)
-                    .append(decimalFormat.format(calculateDDayDiscountAmount()))
+                    .append(formatAmount(calculateDDayDiscountAmount()))
                     .append(NEW_LINE);
         }
     }
 
-    private void hasWeekDayDiscount(StringBuilder stringBuilder, DecimalFormat decimalFormat) {
+    private void hasWeekDayDiscount(StringBuilder stringBuilder) {
         if (calculateWeekDayDiscountAmount() != 0) {
             stringBuilder.append(WEEKDAY_DISCOUNT_FORMAT)
-                    .append(decimalFormat.format(calculateWeekDayDiscountAmount()))
+                    .append(formatAmount(calculateWeekDayDiscountAmount()))
                     .append(NEW_LINE);
         }
     }
 
-    private void hasWeekEndDiscount(StringBuilder stringBuilder, DecimalFormat decimalFormat) {
+    private void hasWeekEndDiscount(StringBuilder stringBuilder) {
         if (calculateWeekEndDiscountAmount() != 0) {
             stringBuilder.append(WEEKEND_DISCOUNT_FORMAT)
-                    .append(decimalFormat.format(calculateWeekEndDiscountAmount()))
+                    .append(formatAmount(calculateWeekEndDiscountAmount()))
                     .append(NEW_LINE);
         }
     }
 
-    private void hasSpecialDayDiscount(StringBuilder stringBuilder, DecimalFormat decimalFormat) {
+    private void hasSpecialDayDiscount(StringBuilder stringBuilder) {
         if (calculateSpecialDayDiscountAmount() != 0) {
             stringBuilder.append(SPECIAL_DISCOUNT_FORMAT)
-                    .append(decimalFormat.format(calculateSpecialDayDiscountAmount()))
+                    .append(formatAmount(calculateSpecialDayDiscountAmount()))
                     .append(NEW_LINE);
         }
     }
 
-    private void hasGiftEvent(StringBuilder stringBuilder, DecimalFormat decimalFormat) {
+    private void hasGiftEvent(StringBuilder stringBuilder) {
         if (calculateGiftEventAmount() != 0) {
             stringBuilder.append(GIFT_EVENT_FORMAT)
-                    .append(decimalFormat.format(calculateGiftEventAmount()));
+                    .append(formatAmount(calculateGiftEventAmount()));
         }
+    }
+
+    private String formatAmount(int amount) {
+        DecimalFormat decimalFormat = new DecimalFormat("-#,###원");
+        return decimalFormat.format(amount);
     }
 }
