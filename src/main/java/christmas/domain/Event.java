@@ -12,10 +12,12 @@ public class Event {
 
     private final Order order;
     private final Benefit benefit;
+    private final Date date;
 
-    public Event(Order order, Benefit benefit) {
+    public Event(Order order, Benefit benefit, Date date) {
         this.order = order;
         this.benefit = benefit;
+        this.date = date;
     }
 
     public boolean isApply() {
@@ -79,5 +81,9 @@ public class Event {
     private String formatAmountByMinus(int amount) {
         DecimalFormat decimalFormat = new DecimalFormat("-#,###원");
         return decimalFormat.format(amount);
+    }
+
+    public int getDate() {
+        return date.getDate();
     }
 }
