@@ -68,11 +68,16 @@ public class Event {
     }
 
     public String getBenefitAmount() {
-        return formatAmount(benefit.calculateTotalAmount());
+        return formatAmountByMinus(benefit.calculateTotalAmount());
     }
 
     private String formatAmount(int amount) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###원");
+        return decimalFormat.format(amount);
+    }
+
+    private String formatAmountByMinus(int amount) {
+        DecimalFormat decimalFormat = new DecimalFormat("-#,###원");
         return decimalFormat.format(amount);
     }
 }
