@@ -5,11 +5,11 @@ public class Event {
     private static final int EVENT_APPLICATION_CRITERIA = 10000;
 
     private final Order order;
-    private final Discount discount;
+    private final Benefit benefit;
 
-    public Event(Order order, Discount discount) {
+    public Event(Order order, Benefit benefit) {
         this.order = order;
-        this.discount = discount;
+        this.benefit = benefit;
     }
 
     public boolean isApply() {

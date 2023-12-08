@@ -2,7 +2,7 @@ package christmas.domain;
 
 import christmas.domain.menu.Beverage;
 
-public class Discount {
+public class Benefit {
 
     private static final int D_DAY_DISCOUNT_BASIC_AMOUNT = 1000;
     private static final int D_DAY_DISCOUNT_ADDITIONAL_AMOUNT = 100;
@@ -14,7 +14,7 @@ public class Discount {
     private final Date date;
     private final Order order;
 
-    public Discount(Date date, Order order) {
+    public Benefit(Date date, Order order) {
         this.date = date;
         this.order = order;
     }
