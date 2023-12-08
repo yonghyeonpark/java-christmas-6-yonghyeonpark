@@ -22,7 +22,8 @@ public class Benefit {
     public int calculateTotalAmount() {
         int totalAmount = 0;
         totalAmount += calculateDDayDiscountAmount();
-        totalAmount += calculateWeekEndOrWeekDayDiscountAmount();
+        totalAmount += calculateWeekDayDiscountAmount();
+        totalAmount += calculateWeekEndDiscountAmount();
         totalAmount += calculateSpecialDayDiscountAmount();
         totalAmount += calculateGiftEventAmount();
         return totalAmount;
@@ -35,13 +36,20 @@ public class Benefit {
         return D_DAY_DISCOUNT_BASIC_AMOUNT + ((date.getDate() - 1) * D_DAY_DISCOUNT_ADDITIONAL_AMOUNT);
     }
 
-    private int calculateWeekEndOrWeekDayDiscountAmount() {
+    private int calculateWeekDayDiscountAmount() {
+        int dessertCount = order.countDessert();
+        if (!date.isWeekEnd()) {
+            return dessertCount * WEEKDAY_DISCOUNT_AMOUNT;
+        }
+        return 0;
+    }
+
+    private int calculateWeekEndDiscountAmount() {
         int mainDishCount = order.countMainDish();
         if (date.isWeekEnd()) {
             return mainDishCount * WEEKEND_DISCOUNT_AMOUNT;
         }
-        int dessertCount = order.countDessert();
-        return dessertCount * WEEKDAY_DISCOUNT_AMOUNT;
+        return 0;
     }
 
     private int calculateSpecialDayDiscountAmount() {
