@@ -1,8 +1,10 @@
 package christmas.domain;
 
+import christmas.util.Convert;
+
 public class Date {
 
-    private static final String DATE_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다.";
+    private static final String DATE_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
     private final int date;
 
@@ -12,12 +14,9 @@ public class Date {
         this.date = date;
     }
 
+
     private int validateFormat(String inputDate) {
-        try {
-            return Integer.parseInt(inputDate);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(DATE_ERROR_MESSAGE);
-        }
+        return Convert.stringToInt(inputDate, DATE_ERROR_MESSAGE);
     }
 
     private void validateRange(int date) {
