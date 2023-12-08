@@ -4,6 +4,9 @@ import christmas.util.Convert;
 
 public class Date {
 
+    private static final int DECEMBER_FIRST_DATE = 1;
+    private static final int DECEMBER_LAST_DATE = 31;
+    private static final int CHRISTMAS = 25;
     private static final String DATE_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
     private final int date;
@@ -23,13 +26,13 @@ public class Date {
     }
 
     private void validateRange(int date) {
-        if (date > 31 || date < 1) {
+        if (date > DECEMBER_LAST_DATE || date < DECEMBER_FIRST_DATE) {
             throw new IllegalArgumentException(DATE_ERROR_MESSAGE);
         }
     }
 
     public boolean isOverChristmas() {
-        if (date > 25) {
+        if (date > CHRISTMAS) {
             return true;
         }
         return false;
