@@ -120,7 +120,7 @@ public class Order {
     private void validateOnlyBeverage() {
         int beverageCount = 0;
         for (Beverage beverage : Beverage.values()) {
-            if (orders.containsKey(beverage)) {
+            if (orders.containsKey(beverage.getName())) {
                 beverageCount++;
             }
         }
