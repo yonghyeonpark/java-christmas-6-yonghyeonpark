@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.domain.menu.Dessert;
+import christmas.domain.menu.MainDish;
 import christmas.util.Convert;
 import java.util.HashMap;
 import java.util.List;
@@ -22,5 +24,25 @@ public class Order {
             List<String> menuAndCount = Convert.stringToListByDash(order);
             this.orders.put(menuAndCount.get(0), Convert.stringToInt(menuAndCount.get(1), ORDER_ERROR_MESSAGE));
         }
+    }
+
+    public int countDessert() {
+        int dessertCount = 0;
+        for (Dessert dessert : Dessert.values()) {
+            if (orders.containsKey(dessert.getName())) {
+                dessertCount++;
+            }
+        }
+        return dessertCount;
+    }
+
+    public int countMainDish() {
+        int mainDishCount = 0;
+        for (MainDish mainDish : MainDish.values()) {
+            if (orders.containsKey(mainDish.getName())) {
+                mainDishCount++;
+            }
+        }
+        return mainDishCount;
     }
 }
