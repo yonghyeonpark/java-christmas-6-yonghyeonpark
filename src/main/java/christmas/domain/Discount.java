@@ -6,6 +6,7 @@ public class Discount {
     private static final int D_DAY_DISCOUNT_ADDITIONAL_AMOUNT = 100;
     private static final int WEEKDAY_DISCOUNT = 2023;
     private static final int WEEKEND_DISCOUNT = 2023;
+    private static final int SPECIAL_DAY_DISCOUNT = 1000;
 
     private final Date date;
     private final Order order;
@@ -29,5 +30,12 @@ public class Discount {
         }
         int dessertCount = order.countDessert();
         return dessertCount * WEEKDAY_DISCOUNT;
+    }
+
+    public int calculateSpecialDayDiscount() {
+        if (date.isSpecialDay()) {
+            return SPECIAL_DAY_DISCOUNT;
+        }
+        return 0;
     }
 }
