@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.domain.menu.Beverage;
+
 public class Discount {
 
     private static final int D_DAY_DISCOUNT_BASIC_AMOUNT = 1000;
@@ -7,6 +9,7 @@ public class Discount {
     private static final int WEEKDAY_DISCOUNT_AMOUNT = 2023;
     private static final int WEEKEND_DISCOUNT_AMOUNT = 2023;
     private static final int SPECIAL_DAY_DISCOUNT_AMOUNT = 1000;
+    private static final int GIFT_EVENT_APPLICATION_CRITERIA = 120000;
 
     private final Date date;
     private final Order order;
@@ -35,6 +38,13 @@ public class Discount {
     public int calculateSpecialDayDiscountAmount() {
         if (date.isSpecialDay()) {
             return SPECIAL_DAY_DISCOUNT_AMOUNT;
+        }
+        return 0;
+    }
+
+    public int calculateGiftEventAmount() {
+        if (order.calculateTotalAmount() > GIFT_EVENT_APPLICATION_CRITERIA) {
+            return Beverage.CHAMPAGNE.getPrice();
         }
         return 0;
     }
