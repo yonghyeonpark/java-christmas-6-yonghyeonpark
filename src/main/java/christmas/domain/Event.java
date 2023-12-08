@@ -42,4 +42,8 @@ public class Event {
         }
         return NOTHING;
     }
+
+    public int calculatePaymentAmount() {
+        return order.calculateTotalAmount() - benefit.calculateTotalAmount();
+    }
 }
