@@ -46,4 +46,12 @@ public class Event {
     public int calculatePaymentAmount() {
         return order.calculateTotalAmount() - benefit.calculateTotalAmount();
     }
+
+    public String getOrders() {
+        return order.toString();
+    }
+
+    public String getBenefits() {
+        return benefit.toString();
+    }
 }
