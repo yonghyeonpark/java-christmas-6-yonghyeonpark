@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.text.DecimalFormat;
+
 public class Event {
 
     private static final int EVENT_APPLICATION_CRITERIA = 10000;
@@ -43,8 +45,8 @@ public class Event {
         return NOTHING;
     }
 
-    public int calculatePaymentAmount() {
-        return order.calculateTotalAmount() - benefit.calculateTotalAmount();
+    public String getPaymentAmount() {
+        return formatAmount(order.calculateTotalAmount() - benefit.calculateTotalAmount());
     }
 
     public String getOrders() {
@@ -53,5 +55,18 @@ public class Event {
 
     public String getBenefits() {
         return benefit.toString();
+    }
+
+    public String getOrderAmount() {
+        return formatAmount(order.calculateTotalAmount());
+    }
+
+    public String getBenefitAmount() {
+        return formatAmount(benefit.calculateTotalAmount());
+    }
+
+    private String formatAmount(int amount) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###원");
+        return decimalFormat.format(amount);
     }
 }
