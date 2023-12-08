@@ -35,7 +35,7 @@ public class Order {
         int dessertCount = 0;
         for (Dessert dessert : Dessert.values()) {
             if (orders.containsKey(dessert.getName())) {
-                dessertCount++;
+                dessertCount += orders.get(dessert.getName());
             }
         }
         return dessertCount;
@@ -45,7 +45,7 @@ public class Order {
         int mainDishCount = 0;
         for (MainDish mainDish : MainDish.values()) {
             if (orders.containsKey(mainDish.getName())) {
-                mainDishCount++;
+                mainDishCount += orders.get(mainDish.getName());
             }
         }
         return mainDishCount;
