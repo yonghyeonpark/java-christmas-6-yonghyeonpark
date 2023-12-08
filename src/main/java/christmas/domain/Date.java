@@ -25,4 +25,11 @@ public class Date {
             throw new IllegalArgumentException(DATE_ERROR_MESSAGE);
         }
     }
+
+    public boolean isOverChristmas() {
+        if (date > 25) {
+            return true;
+        }
+        return false;
+    }
 }
