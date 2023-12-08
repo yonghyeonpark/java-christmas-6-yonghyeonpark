@@ -32,4 +32,22 @@ public class Date {
         }
         return false;
     }
+
+    public boolean isSpecialDay() {
+        for (int specialDay : Day.SPECIAL.getDay()) {
+            if (date == specialDay) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isWeekEnd() {
+        for (int weekEnd : Day.WEEKEND.getDay()) {
+            if (date == weekEnd) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
