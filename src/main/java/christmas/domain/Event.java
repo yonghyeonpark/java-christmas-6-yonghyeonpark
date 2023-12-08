@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.domain.menu.Beverage;
 import java.text.DecimalFormat;
 
 public class Event {
@@ -46,6 +47,11 @@ public class Event {
     }
 
     public String getPaymentAmount() {
+        if (getGift().equals(GIFT)) {
+            return formatAmount(
+                    order.calculateTotalAmount() - benefit.calculateTotalAmount() + Beverage.CHAMPAGNE.getPrice()
+            );
+        }
         return formatAmount(order.calculateTotalAmount() - benefit.calculateTotalAmount());
     }
 
