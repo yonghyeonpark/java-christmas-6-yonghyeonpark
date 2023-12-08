@@ -12,6 +12,9 @@ import java.util.Map;
 public class Order {
 
     private static final String ORDER_ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private static final String BLANK = " ";
+    private static final String UNIT = "개";
+    private static final String NEW_LINE = "\n";
 
     private final Map<String, Integer> orders;
 
@@ -97,5 +100,18 @@ public class Order {
             }
         }
         return beverageAmount;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : orders.entrySet()) {
+            stringBuilder.append(entry.getKey())
+                    .append(BLANK)
+                    .append(entry.getValue())
+                    .append(UNIT)
+                    .append(NEW_LINE);
+        }
+        return stringBuilder.toString();
     }
 }
